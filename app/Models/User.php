@@ -58,4 +58,9 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function shoppingLists()
+    {
+        return $this->belongsToMany(ShoppingList::class, 'shopping_list_user');
+    }
 }
