@@ -10,7 +10,7 @@ class ShoppingList extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['title'];
+    protected $fillable = ['title', 'shopping_date'];
 
     public function users()
     {

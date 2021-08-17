@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ShoppingListController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,6 +16,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
+  Route::resource('shopping_lists', ShoppingListController::class);
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {

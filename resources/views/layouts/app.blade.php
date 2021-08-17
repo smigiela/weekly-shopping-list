@@ -35,6 +35,7 @@
 
             <!-- Page Content -->
             <main>
+                @include('partials.message')
                 {{ $slot }}
             </main>
         </div>

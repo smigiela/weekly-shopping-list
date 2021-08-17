@@ -16,6 +16,7 @@ class CreateShoppingListsTable extends Migration
         Schema::create('shopping_lists', function (Blueprint $table) {
             $table->id();
             $table->string('title')->nullable();
+            $table->date('shopping_date');
             $table->softDeletes();
             $table->timestamps();
         });

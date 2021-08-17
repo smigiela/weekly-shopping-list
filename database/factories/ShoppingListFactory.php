@@ -22,7 +22,8 @@ class ShoppingListFactory extends Factory
     public function definition()
     {
         return [
-            'title' => $this->faker->word
+            'title' => $this->faker->word,
+            'shopping_date' => $this->faker->date
         ];
     }
 
