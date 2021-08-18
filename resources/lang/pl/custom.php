@@ -7,7 +7,8 @@ return [
         'choose' => 'Wybierz',
         'save' => 'Zapisz',
         'messages' => [
-            'successfull_save' => 'Poprawnie zapisano',
+            'successfully_save' => 'Poprawnie zapisano',
+            'successfully_delete' => 'Poprawnie usunięto',
             'dont_have_permission' => 'Nie masz uprawnień do tej akcji'
         ],
     ],
@@ -29,5 +30,24 @@ return [
           'title' => 'Nazwa listy',
           'shopping_date' => 'Data zakupu',
       ],
-  ]
+      'show' => [
+          'header' => 'Widok listy',
+          'title' => 'Nazwa listy',
+          'shopping_date' => 'Data zakupu',
+          'add_position' => 'Dodaj pozycję',
+          'amount' => 'Ilość',
+          'type' => 'Typ',
+          'type_placeholder' => 'Wybierz ilość lub waga',
+          'qty' => 'szt.',
+          'g' => 'g' //gram
+      ],
+  ],
+    'positions' => [
+        'edit' => [
+            'header' => 'Edytuj pozycję',
+            'product' => 'Nazwa produktu',
+            'quantity' => 'Ilość',
+            'weight' => 'Waga',
+        ]
+    ]
 ];

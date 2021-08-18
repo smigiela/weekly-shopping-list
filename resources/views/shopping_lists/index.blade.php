@@ -8,11 +8,8 @@
     <div class="py-12">
         <div class="mx-auto sm:px-6 lg:px-8">
             <div class="flex gap-4 overflow-hidden shadow-xl sm:rounded-lg">
-                <div class="w-3/4 bg-white">
+                <div class="w-full bg-white">
                     @livewire('show-lists')
-                </div>
-                <div class="w-1/4 bg-white p-2">
-                    Filtry
                 </div>
             </div>
         </div>

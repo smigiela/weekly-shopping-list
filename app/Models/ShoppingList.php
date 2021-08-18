@@ -16,4 +16,24 @@ class ShoppingList extends Model
     {
         return $this->belongsToMany(User::class, 'shopping_list_user');
     }
+
+    public function positions()
+    {
+        return $this->hasMany(Position::class);
+    }
+
+    public static function check_permission($shoppingList)
+    {
+        if (! $shoppingList->users->contains(auth()->user())){
+            abort(401, __('custom.global.messages.dont_have_permission'));
+        }
+    }
+
+    public static function mark_after_expiration($shoppingList)
+    {
+        if ($shoppingList->shopping_date < now()) {
+            return true;
+        }
+    }
+
 }

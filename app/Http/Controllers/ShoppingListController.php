@@ -20,44 +20,43 @@ class ShoppingListController extends Controller
      */
     public function store(StoreShoppingListRequest $request)
     {
-        ShoppingList::create($request->validated());
+        $id = ShoppingList::create($request->validated());
 
-        return back(201)->with('message', __('custom.global.messages.successfull_save'));
+        return redirect()->route('shopping_lists.show', $id)
+            ->with('message', __('custom.global.messages.successfully_save'));
     }
 
-    public function show(ShoppingList $shoppingList)
+    public function show($id)
     {
-        if (! $shoppingList->users->contains(auth()->user())){
-            abort(401, __('custom.global.messages.dont_have_permission'));
-        }
+        $shoppingList = auth()->user()->shoppingLists()->with('positions')->findOrFail($id);
 
-        return view('shopping_lists.show', compact('shoppingList'));
+        ShoppingList::check_permission($shoppingList);
+
+        return view('shopping_lists.show', compact('shoppingList', ));
     }
 
     public function edit(ShoppingList $shoppingList)
     {
-        if (! $shoppingList->users->contains(auth()->user())){
-            abort(401, __('custom.global.messages.dont_have_permission'));
-        }
+        ShoppingList::check_permission($shoppingList);
 
         return view('shopping_lists.edit', compact('shoppingList'));
     }
 
     public function update(ShoppingList $shoppingList, StoreShoppingListRequest $request)
     {
-        if (! $shoppingList->users->contains(auth()->user())){
-            abort(401, __('custom.global.messages.dont_have_permission'));
-        }
+        ShoppingList::check_permission($shoppingList);
 
         $shoppingList->update($request->validated());
+
+        return back(200)->with('message', __('custom.global.messages.successfully_save'));
     }
 
     public function destroy(ShoppingList $shoppingList)
     {
-        if (! $shoppingList->users->contains(auth()->user())){
-            abort(401, __('custom.global.messages.dont_have_permission'));
-        }
+        ShoppingList::check_permission($shoppingList);
 
         $shoppingList->delete();
+
+        return back(200)->with('message', __('custom.global.messages.successfully_delete'));
     }
 }
