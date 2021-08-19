@@ -2,7 +2,7 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
-.line-through{
+.position_is_done{
     text-decoration: line-through;
     color: red;
 }

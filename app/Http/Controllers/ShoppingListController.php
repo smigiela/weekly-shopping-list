@@ -16,7 +16,7 @@ class ShoppingListController extends Controller
      * @param StoreShoppingListRequest $request
      * @return \Illuminate\Http\RedirectResponse
      *
-     * Use observer to add auth user to pivot tabel
+     * Use observer to set team_id
      */
     public function store(StoreShoppingListRequest $request)
     {
@@ -28,7 +28,8 @@ class ShoppingListController extends Controller
 
     public function show($id)
     {
-        $shoppingList = auth()->user()->shoppingLists()->with('positions')->findOrFail($id);
+        $shoppingList = ShoppingList::with('positions')
+            ->where('team_id', auth()->user()->currentTeam->id)->with('positions')->findOrFail($id);
 
         ShoppingList::check_permission($shoppingList);
 

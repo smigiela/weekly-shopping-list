@@ -10,21 +10,21 @@ class ShoppingList extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['title', 'shopping_date'];
-
-    public function users()
-    {
-        return $this->belongsToMany(User::class, 'shopping_list_user');
-    }
+    protected $fillable = ['title', 'shopping_date', 'team_id'];
 
     public function positions()
     {
         return $this->hasMany(Position::class);
     }
 
+    public function team()
+    {
+        return $this->belongsTo(Team::class);
+    }
+
     public static function check_permission($shoppingList)
     {
-        if (! $shoppingList->users->contains(auth()->user())){
+        if ( $shoppingList->team_id != auth()->user()->currentTeam->id){
             abort(401, __('custom.global.messages.dont_have_permission'));
         }
     }

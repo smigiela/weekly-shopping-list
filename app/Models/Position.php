@@ -20,7 +20,7 @@ class Position extends Model
     {
         $shoppingList = ShoppingList::find($position->shopping_list_id);
 
-        if (! $shoppingList->users->contains(auth()->user())) {
+        if ( $shoppingList->team_id != auth()->user()->currentTeam->id) {
             abort(404, __('custom.global.messages.dont_have_permission'));
         }
     }

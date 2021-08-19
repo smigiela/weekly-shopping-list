@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateShoppingListUserTable extends Migration
+class CreateTeamUserTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,14 @@ class CreateShoppingListUserTable extends Migration
      */
     public function up()
     {
-        Schema::create('shopping_list_user', function (Blueprint $table) {
+        Schema::create('team_user', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('shopping_list_id')->constrained('shopping_lists');
-            $table->foreignId('user_id')->constrained('users');
+            $table->foreignId('team_id');
+            $table->foreignId('user_id');
+            $table->string('role')->nullable();
             $table->timestamps();
+
+            $table->unique(['team_id', 'user_id']);
         });
     }
 
@@ -28,6 +31,6 @@ class CreateShoppingListUserTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('shopping_list_user');
+        Schema::dropIfExists('team_user');
     }
 }
