@@ -1881,9 +1881,6 @@ select {
 .underline {
 	text-decoration: underline;
 }
-.line-through {
-	text-decoration: line-through;
-}
 .antialiased {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
