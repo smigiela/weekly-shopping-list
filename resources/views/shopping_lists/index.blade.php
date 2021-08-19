@@ -8,19 +8,20 @@
     <div class="py-12">
         <div class="mx-auto sm:px-6 lg:px-8">
             <div class="flex gap-4 overflow-hidden shadow-xl sm:rounded-lg">
-                <div class="w-full bg-white">
+                <div class="w-full">
                     @livewire('show-lists')
                 </div>
             </div>
         </div>
     </div>
     <div class="m-5">
+
         <form action="{{route('shopping_lists.store')}}" method="POST">
             @method('POST')
             @csrf
             <div class="shadow sm:rounded-md sm:overflow-hidden">
                 <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
-                    <h1>{{__('custom.shopping-lists.create.header')}}</h1>
+                    <h1>{{__('custom.shopping-lists.create.header')}} <b>{{auth()->user()->currentTeam->name}}</b></h1>
                     <div class="grid grid-cols-2 gap-6">
                         <div class="col-span-2 sm:col-span-2">
                             <label for="title" class="block text-sm font-medium text-gray-700">

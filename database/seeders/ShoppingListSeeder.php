@@ -14,6 +14,7 @@ class ShoppingListSeeder extends Seeder
      */
     public function run()
     {
+        ShoppingList::unsetEventDispatcher();
         ShoppingList::factory()->count(20)->create();
     }
 }

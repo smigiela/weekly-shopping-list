@@ -11,13 +11,15 @@
                             @forelse($shoppingList->positions as $position)
                                 <div class="flex">
                                     <div class="w-1/2">
-                                        <li>{{$position->name}}</li>
+                                        <li class="{{ ($position->is_done) ? 'position_is_done' : '' }}">{{$position->name}}</li>
                                     </div>
                                     <div class="w-1/4">
-                                        <li>{{$position->quantity}} sztuk</li>
-                                    </div>
-                                    <div class="w-1/4">
-                                        <li>{{$position->weight}} g</li>
+                                        <li class="{{ ($position->is_done) ? 'position_is_done' : '' }}">{{$position->amount}}
+                                            @if($position->type == 'weight')
+                                                {{__('custom.shopping-lists.show.g')}}
+                                            @elseif($position->type == 'quantity')
+                                                {{__('custom.shopping-lists.show.qty')}}
+                                            @endif</li>
                                     </div>
                                 </div>
                                 <hr>

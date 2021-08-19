@@ -31,10 +31,10 @@
                                             </a>
                                         @endif
                                         <div class="w-1/2">
-                                            <li class="{{ ($position->is_done) ? 'line-through' : '' }}"> {{$position->name}}</li>
+                                            <li class="{{ ($position->is_done) ? 'position_is_done' : '' }}"> {{$position->name}}</li>
                                         </div>
                                         <div class="w-1/4">
-                                            <li class="{{ ($position->is_done) ? 'line-through' : '' }}">{{$position->amount}}
+                                            <li class="{{ ($position->is_done) ? 'position_is_done' : '' }}">{{$position->amount}}
                                                 @if($position->type == 'weight'){{__('custom.shopping-lists.show.g')}}
                                                 @elseif($position->type == 'quantity'){{__('custom.shopping-lists.show.qty')}}
                                                 @endif</li>

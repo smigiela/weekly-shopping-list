@@ -14,7 +14,7 @@ class ShoppingListObserver
      */
     public function created(ShoppingList $shoppingList)
     {
-        $shoppingList->users()->attach(auth()->id());
+        $shoppingList->update(['team_id' => auth()->user()->currentTeam->id]);
     }
 
     /**

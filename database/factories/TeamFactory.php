@@ -2,17 +2,18 @@
 
 namespace Database\Factories;
 
-use App\Models\Position;
+use App\Models\Team;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class PositionFactory extends Factory
+class TeamFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Position::class;
+    protected $model = Team::class;
 
     /**
      * Define the model's default state.
@@ -22,10 +23,9 @@ class PositionFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->word,
-            'amount' => $this->faker->numberBetween(1,5000),
-            'type' => $this->faker->randomElement(['weight', 'quantity']),
-            'shopping_list_id' => rand(1,20)
+            'name' => $this->faker->unique()->company(),
+            'user_id' => User::factory(),
+            'personal_team' => true,
         ];
     }
 }

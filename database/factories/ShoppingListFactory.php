@@ -23,14 +23,9 @@ class ShoppingListFactory extends Factory
     {
         return [
             'title' => $this->faker->word,
-            'shopping_date' => $this->faker->date
+            'shopping_date' => $this->faker->date,
+            'team_id' => rand(1,5)
         ];
     }
 
-    public function configure()
-    {
-        return $this->afterCreating(function (ShoppingList $shoppingList) {
-           $shoppingList->users()->attach(rand(1,3));
-        });
-    }
 }

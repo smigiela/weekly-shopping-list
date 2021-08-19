@@ -2,10 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\Position;
+use App\Models\Team;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
-class PositionSeeder extends Seeder
+class TeamSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,6 +15,6 @@ class PositionSeeder extends Seeder
      */
     public function run()
     {
-        Position::factory()->count(60)->create();
+        Team::factory()->count(10)->create();
     }
 }
