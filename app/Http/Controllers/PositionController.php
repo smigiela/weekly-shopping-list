@@ -63,7 +63,7 @@ class PositionController extends Controller
 
         $position->delete();
 
-        return back(200)->with('message', __('custom.global.messages.successfully_delete'));
+        return back()->with('message', __('custom.global.messages.successfully_delete'));
     }
 
     public function mark_as_done(Position $position)
