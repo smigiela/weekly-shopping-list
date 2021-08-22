@@ -47,9 +47,10 @@ return [
           'add_position' => 'Dodaj pozycję',
           'amount' => 'Ilość',
           'type' => 'Typ',
-          'type_placeholder' => 'Wybierz ilość lub waga',
+          'type_placeholder' => 'Wybierz ilość, objętość lub waga',
           'qty' => 'szt.',
-          'g' => 'g' //gram
+          'g' => 'g', //gram
+          'ml' => 'ml',
       ],
   ],
     'positions' => [

@@ -37,6 +37,7 @@
                                             <li class="{{ ($position->is_done) ? 'position_is_done' : '' }}">{{$position->amount}}
                                                 @if($position->type == 'weight'){{__('custom.shopping-lists.show.g')}}
                                                 @elseif($position->type == 'quantity'){{__('custom.shopping-lists.show.qty')}}
+                                                @elseif($position->type == 'volume'){{__('custom.shopping-lists.show.ml')}}
                                                 @endif</li>
                                         </div>
                                         <div class="w-1/4 text-right">
@@ -118,11 +119,11 @@
                                 <div class="relative inline-block w-full text-gray-700">
                                     <select id="type" name="type" class="w-full h-10 pl-3 pr-6 text-base placeholder-gray-600 border
                                      rounded-lg appearance-none focus:shadow-outline
-                                    @error('type') border-red-500 @enderror"
-                                            placeholder="{{__('custom.shopping-lists.show.type_placeholder')}}">
+                                    @error('type') border-red-500 @enderror">
                                         <option disabled selected>{{__('custom.shopping-lists.show.type_placeholder')}}</option>
-                                        <option value="quantity">sztuk</option>
-                                        <option value="weight">gram</option>
+                                        <option value="quantity">{{__('custom.shopping-lists.show.qty')}}</option>
+                                        <option value="weight">{{__('custom.shopping-lists.show.g')}}</option>
+                                        <option value="volume">{{__('custom.shopping-lists.show.ml')}}</option>
                                     </select>
                                     <div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
                                         <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" fill-rule="evenodd"></path></svg>
