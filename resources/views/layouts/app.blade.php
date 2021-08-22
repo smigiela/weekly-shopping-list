@@ -35,11 +35,10 @@
 
             <!-- Page Content -->
             <main>
+                @include('partials.message')
                 {{ $slot }}
             </main>
         </div>
-
-        @stack('modals')
 
         @livewireScripts
     </body>

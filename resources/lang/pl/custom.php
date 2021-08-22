@@ -9,6 +9,7 @@ return [
         'messages' => [
             'successfully_save' => 'Poprawnie zapisano',
             'successfully_delete' => 'Poprawnie usunięto',
+            'successfully_restore' => 'Poprawnie przywrócono',
             'dont_have_permission' => 'Nie masz uprawnień do tej akcji'
         ],
         'roles' => [

@@ -63,7 +63,23 @@ class PositionController extends Controller
 
         $position->delete();
 
-        return back()->with('message', __('custom.global.messages.successfully_delete'));
+        return back()
+            ->with(
+                'message',
+                __('custom.global.messages.successfully_delete')
+                . '<a href="'.route('positions.restore', $position->id).'" class="text-red-500 ml-2 md:ml-12">
+                    <strong>Ups! Cofnij!</strong>
+                    </a>');
+    }
+
+    public function restore($position_id)
+    {
+        $position = Position::withTrashed()->findOrFail($position_id);
+        if ($position && $position->trashed()) {
+            $position->restore();
+        }
+
+        return back()->with('message', __('custom.global.messages.successfully_restore'));
     }
 
     public function mark_as_done(Position $position)

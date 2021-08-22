@@ -14,7 +14,6 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::get('/', function () {
     return view('welcome');
 });
@@ -22,6 +21,7 @@ Route::get('/', function () {
 Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
   Route::resource('shopping_lists', ShoppingListController::class);
 
+  Route::get('positions/restore/{position_id}', [PositionController::class, 'restore'])->name('positions.restore');
   Route::get('positions/mark_as_done/{position}', [PositionController::class, 'mark_as_done'])->name('positions.markAsDone');
   Route::get('positions/unmark_as_done/{position}', [PositionController::class, 'unmark_as_done'])->name('positions.unmarkAsDone');
   Route::post('positions/{shopping_list}', [PositionController::class, 'store'])->name('positions.store');
