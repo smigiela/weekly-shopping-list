@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 */
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
 
 Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
   Route::resource('shopping_lists', ShoppingListController::class);
