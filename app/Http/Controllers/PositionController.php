@@ -26,7 +26,7 @@ class PositionController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param Position $position
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\View
      */
     public function edit(Position $position)
     {
