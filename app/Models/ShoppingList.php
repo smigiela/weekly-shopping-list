@@ -10,7 +10,7 @@ class ShoppingList extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['title', 'shopping_date', 'team_id'];
+    protected $fillable = ['title', 'shopping_date', 'weekly_shopping_list_id', 'team_id'];
 
     public function positions()
     {
@@ -20,6 +20,11 @@ class ShoppingList extends Model
     public function team()
     {
         return $this->belongsTo(Team::class);
+    }
+
+    public function weeklyShoppingLists()
+    {
+        return $this->belongsTo(WeeklyShoppingList::class);
     }
 
     public static function check_permission($shoppingList)

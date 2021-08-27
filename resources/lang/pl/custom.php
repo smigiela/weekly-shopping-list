@@ -55,6 +55,11 @@ return [
           'g' => 'g', //gram
           'ml' => 'ml',
       ],
+      'weekly_list' => [
+          'header' => 'Lista zbiorcza',
+          'subheader' => 'Generuj listę zbiorczą',
+          'button' => 'Generuj'
+      ],
   ],
     'positions' => [
         'edit' => [

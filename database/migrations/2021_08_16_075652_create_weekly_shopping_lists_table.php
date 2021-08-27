@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateShoppingListsTable extends Migration
+class CreateWeeklyShoppingListsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,10 @@ class CreateShoppingListsTable extends Migration
      */
     public function up()
     {
-        Schema::create('shopping_lists', function (Blueprint $table) {
+        Schema::create('weekly_shopping_lists', function (Blueprint $table) {
             $table->id();
-            $table->string('title')->nullable();
-            $table->date('shopping_date');
-            $table->foreignId('weekly_shopping_list_id')->nullable()->constrained('weekly_shopping_lists');
-            $table->softDeletes();
+            $table->date('shopping_date')->nullable();
+            $table->foreignId('team_id')->constrained('teams');
             $table->timestamps();
         });
     }
@@ -30,6 +28,6 @@ class CreateShoppingListsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('shopping_lists');
+        Schema::dropIfExists('weekly_shopping_lists');
     }
 }

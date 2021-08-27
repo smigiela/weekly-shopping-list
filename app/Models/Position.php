@@ -17,6 +17,11 @@ class Position extends Model
         return $this->belongsTo(ShoppingList::class);
     }
 
+    public function weeklyShoppingLists()
+    {
+        return $this->belongsToMany(WeeklyShoppingList::class, 'position_weekly_shopping_list');
+    }
+
     public static function check_permission($position)
     {
         $shoppingList = ShoppingList::find($position->shopping_list_id);
