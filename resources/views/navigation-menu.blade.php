@@ -22,6 +22,18 @@
                         {{ __('Listy zakupów') }}
                     </x-jet-nav-link>
                 </div>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-jet-nav-link href="{{ route('weekly_shopping_lists.create') }}">
+                        {{ __('Na zakupy!') }}
+                    </x-jet-nav-link>
+                </div>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-jet-nav-link href="{{ route('weekly_shopping_lists.index') }}">
+                        {{ __('Moje listy tygodniowe') }}
+                    </x-jet-nav-link>
+                </div>
             </div>
 
             <div class="hidden sm:flex sm:items-center sm:ml-6">

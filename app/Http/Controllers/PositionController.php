@@ -86,8 +86,32 @@ class PositionController extends Controller
     {
         Position::check_permission($position);
 
-        $position->update(['is_done' => true]);
 
+        /**
+         * Tutaj dzieje się chyba rzecz, o którą najbardziej Ci chodziło:
+         * zanaczanie jako ukończonych wszystkich pozycji z listy, które należą do "grupy" (np. pomidorów)
+         *
+         * Zobacz jaki elegancki łańcuszek się robi dzięki prawidłowo zaimplementowanym relacjom:
+         *  1) $pozycja odwołuje się do swojej $shoppingListy
+         *  2) $shoppingLista odwołuje się do $weeklyShoppingListy, do której należy
+         *  3) $weeklyShoppingLista wypluwa wszystkie swoje $pozycje
+         *
+         * Wystarczy, iterując po wszystkich,
+         * sprawdzić, które mają np. taką samą nazwę jak ta podana w argumencie funkcji
+         *
+         * Tylko, że jak ktoś doda do listy "ogórki", a kto inny "Ogórki", albo "ogurki" to już nie zadziała.
+         * Albo trzeba będzie pierdyliard reguł walidacyjnych porobić albo: listę dostępnych produkótw: tak żeby
+         * użytkownik nie wpisywał swoich (przynajmniej nie za każdym razem), a wybierał z listy predefiniowanych.
+         * Na takiej liście będzie narzucone czy produkt kupujemy "na sztuki", "na wagę", na "na mililitry" etc.
+         * No bo ktoś może dopisać do listy 5 ogórków, a drugi 5 kg ogórków i przy sumowaniu wyjdzie kaszana.
+         * To takie moje przemyślenia :)
+         *
+        */
+        foreach ($position->shoppingList->weeklyShoppingList->positions as $toBeDone){
+            if($position->name == $toBeDone->name) {
+                $toBeDone->update(['is_done' => true]);
+            }
+        }
         return back();
     }
 
@@ -95,7 +119,11 @@ class PositionController extends Controller
     {
         Position::check_permission($position);
 
-        $position->update(['is_done' => false]);
+        foreach ($position->shoppingList->weeklyShoppingList->positions as $toBeUndone) {
+            if($position->name == $toBeUndone->name) {
+                $toBeUndone->update(['is_done' => false]);
+            }
+        }
 
         return back();
     }
