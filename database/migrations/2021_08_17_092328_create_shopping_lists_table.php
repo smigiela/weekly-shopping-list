@@ -17,6 +17,7 @@ class CreateShoppingListsTable extends Migration
             $table->id();
             $table->string('title')->nullable();
             $table->date('shopping_date');
+            $table->foreignId('weekly_shopping_list_id')->nullable()->constrained('weekly_shopping_lists');
             $table->softDeletes();
             $table->timestamps();
         });

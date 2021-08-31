@@ -26,7 +26,7 @@ class StorePositionRequest extends FormRequest
         return [
             'name' => ['required', 'string', 'between:2,50'],
             'amount' => ['required', 'integer', 'between:0,10000'],
-            'type' => ['required', 'in:weight,quantity', 'between:0,10000']
+            'type' => ['required', 'in:weight,quantity,volume']
         ];
     }
 }

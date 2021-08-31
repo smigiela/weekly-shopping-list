@@ -17,7 +17,7 @@ class CreatePositionsTable extends Migration
             $table->id();
             $table->string('name');
             $table->integer('amount')->nullable();
-            $table->enum('type', ['quantity', 'weight'])->nullable();
+            $table->enum('type', ['quantity', 'weight', 'volume'])->nullable();
             $table->foreignId('shopping_list_id')->constrained('shopping_lists')->cascadeOnDelete();
             $table->timestamps();
         });
