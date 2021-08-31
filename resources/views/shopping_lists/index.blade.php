@@ -39,7 +39,8 @@
                             {{__('custom.shopping_lists.global.shopping_date')}}
                         </label>
                         <div class="mt-1">
-                            <input type="date" id="shopping_date" name="shopping_date" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md" placeholder="you@example.com">
+                            <input type="date" id="shopping_date" name="shopping_date"
+                                   class="@error('shopping_date') border-red-500 @enderror shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md" placeholder="you@example.com">
                         </div>
                     </div>
                     <x-jet-validation-errors></x-jet-validation-errors>
