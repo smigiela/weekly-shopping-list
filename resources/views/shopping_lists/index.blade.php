@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('custom.shopping-lists.index.header') }}
+            {{ __('custom.shopping_lists.index.header') }}
         </h2>
     </x-slot>
 
@@ -21,11 +21,11 @@
             @csrf
             <div class="shadow sm:rounded-md sm:overflow-hidden">
                 <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
-                    <h1>{{__('custom.shopping-lists.create.header')}} <b>{{auth()->user()->currentTeam->name}}</b></h1>
+                    <h1>{{__('custom.shopping_lists.create.header')}} <b>{{auth()->user()->currentTeam->name}}</b></h1>
                     <div class="grid grid-cols-2 gap-6">
                         <div class="col-span-2 sm:col-span-2">
                             <label for="title" class="block text-sm font-medium text-gray-700">
-                                {{__('custom.shopping-lists.create.title')}}
+                                {{__('custom.shopping_lists.create.title')}}
                             </label>
                             <div class="mt-1 flex rounded-md shadow-sm">
                                 <input type="text" name="title" id="title"
@@ -36,7 +36,7 @@
                     </div>
                     <div>
                         <label for="shopping_date" class="block text-sm font-medium text-gray-700">
-                            {{__('custom.shopping-lists.create.shopping_date')}}
+                            {{__('custom.shopping_lists.global.shopping_date')}}
                         </label>
                         <div class="mt-1">
                             <input type="date" id="shopping_date" name="shopping_date" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md" placeholder="you@example.com">

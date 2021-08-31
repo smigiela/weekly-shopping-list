@@ -11,7 +11,7 @@ class ShoppingList extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'weekly_shopping_list_id', // by adam
+        'weekly_shopping_list_id',
         'title',
         'shopping_date',
         'team_id',
@@ -35,7 +35,7 @@ class ShoppingList extends Model
     public static function check_permission($shoppingList)
     {
         if ( $shoppingList->team_id != auth()->user()->currentTeam->id){
-            abort(401, __('custom.global.messages.dont_have_permission'));
+            abort(401, __('custom.global.messages.dont_have_permission_message'));
         }
     }
 

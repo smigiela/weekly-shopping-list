@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('custom.shopping-lists.edit.header') }}
+            {{ __('custom.shopping_lists.edit.header') }}
         </h2>
     </x-slot>
 
@@ -18,7 +18,7 @@
                                         <div class="grid grid-cols-2 gap-6">
                                             <div class="col-span-2 sm:col-span-2">
                                                 <label for="title" class="block text-sm font-medium text-gray-700">
-                                                    {{__('custom.shopping-lists.create.title')}}
+                                                    {{__('custom.shopping_lists.create.title')}}
                                                 </label>
                                                 <div class="mt-1 flex rounded-md shadow-sm">
                                                     <input type="text" name="title" id="title"
@@ -32,7 +32,7 @@
                                         </div>
                                         <div>
                                             <label for="shopping_date" class="block text-sm font-medium text-gray-700">
-                                                {{__('custom.shopping-lists.create.shopping_date')}}
+                                                {{__('custom.shopping_lists.create.shopping_date')}}
                                             </label>
                                             <div class="mt-1">
                                                 <input type="date" id="shopping_date" name="shopping_date"

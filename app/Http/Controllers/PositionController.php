@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StorePositionRequest;
 use App\Models\Position;
+use App\Models\ShoppingList;
 use Illuminate\Http\Request;
 
 class PositionController extends Controller
@@ -15,9 +16,11 @@ class PositionController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      *
      */
-    public function store(StorePositionRequest $request, $shopping_list)
+    public function store(StorePositionRequest $request, ShoppingList $shoppingList)
     {
-        Position::create($request->validated() + ['shopping_list_id' => $shopping_list]);
+        ShoppingList::check_permission($shoppingList);
+
+        Position::create($request->validated() + ['shopping_list_id' => $shoppingList->id]);
 
         return back(201)->with('message', __('custom.global.messages.successfully_save'));
     }
@@ -86,27 +89,6 @@ class PositionController extends Controller
     {
         Position::check_permission($position);
 
-
-        /**
-         * Tutaj dzieje się chyba rzecz, o którą najbardziej Ci chodziło:
-         * zanaczanie jako ukończonych wszystkich pozycji z listy, które należą do "grupy" (np. pomidorów)
-         *
-         * Zobacz jaki elegancki łańcuszek się robi dzięki prawidłowo zaimplementowanym relacjom:
-         *  1) $pozycja odwołuje się do swojej $shoppingListy
-         *  2) $shoppingLista odwołuje się do $weeklyShoppingListy, do której należy
-         *  3) $weeklyShoppingLista wypluwa wszystkie swoje $pozycje
-         *
-         * Wystarczy, iterując po wszystkich,
-         * sprawdzić, które mają np. taką samą nazwę jak ta podana w argumencie funkcji
-         *
-         * Tylko, że jak ktoś doda do listy "ogórki", a kto inny "Ogórki", albo "ogurki" to już nie zadziała.
-         * Albo trzeba będzie pierdyliard reguł walidacyjnych porobić albo: listę dostępnych produkótw: tak żeby
-         * użytkownik nie wpisywał swoich (przynajmniej nie za każdym razem), a wybierał z listy predefiniowanych.
-         * Na takiej liście będzie narzucone czy produkt kupujemy "na sztuki", "na wagę", na "na mililitry" etc.
-         * No bo ktoś może dopisać do listy 5 ogórków, a drugi 5 kg ogórków i przy sumowaniu wyjdzie kaszana.
-         * To takie moje przemyślenia :)
-         *
-        */
         foreach ($position->shoppingList->weeklyShoppingList->positions as $toBeDone){
             if($position->name == $toBeDone->name) {
                 $toBeDone->update(['is_done' => true]);

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StorePositionRequest extends FormRequest
+class WeeklyListStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,9 +24,8 @@ class StorePositionRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required', 'string', 'between:2,50'],
-            'amount' => ['required', 'integer', 'between:0,10000'],
-            'type' => ['required', 'in:weight,quantity,volume']
+            'shopping_from' => ['required', 'date'],
+            'shopping_to' => ['required', 'date'],
         ];
     }
 }

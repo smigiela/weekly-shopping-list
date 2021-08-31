@@ -10,10 +10,9 @@ class WeeklyShoppingList extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name', //by adam
         'shopping_date',
-        'shopping_from', // by adam
-        'shopping_to', // by adam
+        'shopping_from',
+        'shopping_to',
         'team_id'
     ];
 

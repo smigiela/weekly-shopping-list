@@ -22,7 +22,7 @@ class Position extends Model
         $shoppingList = ShoppingList::find($position->shopping_list_id);
 
         if ( $shoppingList->team_id != auth()->user()->currentTeam->id) {
-            abort(404, __('custom.global.messages.dont_have_permission'));
+            abort(404, __('custom.global.messages.dont_have_permission_message'));
         }
     }
 }

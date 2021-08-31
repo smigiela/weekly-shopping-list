@@ -16,31 +16,19 @@
 </head>
 <body class="">
 <div class="relative flex items-top justify-center bg-gray-100 dark:bg-gray-900 sm:items-center sm:pt-0">
-        <nav
-            class="top-0 absolute z-50 w-full flex flex-wrap items-center justify-between px-2 py-3 "
-        >
-            <div
-                class="container px-4 mx-auto flex flex-wrap items-center justify-between"
-            >
-                <div
-                    class="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start"
-                >
-                    <a
-                        class="text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase text-white"
-                        href="{{route('welcome')}}"
-                    >{{ config('app.name', 'Weekly Shopping APP') }}</a>
-                    <button
-                        class="cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none"
+        <nav class="top-0 absolute z-50 w-full flex flex-wrap items-center justify-between px-2 py-3 ">
+            <div class="container px-4 mx-auto flex flex-wrap items-center justify-between">
+                <div class="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
+                    <a class="text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase text-white"
+                        href="{{route('welcome')}}">{{ config('app.name', 'Weekly Shopping APP') }}</a>
+                    <button class="cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none"
                         type="button"
-                        onclick="toggleNavbar('example-collapse-navbar')"
-                    >
+                        onclick="toggleNavbar('example-collapse-navbar')">
                         <i class="text-white fas fa-bars"></i>
                     </button>
                 </div>
-                <div
-                    class="lg:flex flex-grow items-center bg-white lg:bg-transparent lg:shadow-none hidden"
-                    id="example-collapse-navbar"
-                >
+                <div class="lg:flex flex-grow items-center bg-white lg:bg-transparent lg:shadow-none hidden"
+                    id="example-collapse-navbar">
                     <ul class="flex flex-col lg:flex-row list-none mr-auto">
                         <li class="flex items-center">
                             <a
@@ -50,8 +38,20 @@
                                 ></i>
                                 {{__('custom.home_page.nav.instruction')}}</a>
                         </li>
+
                     </ul>
-                    <ul class="flex flex-col lg:flex-row list-none lg:ml-auto">
+                    <ul class="flex flex-col lg:flex-row list-none lg:ml-autoo">
+                        <li class="flex items-center">
+                                @if(\Illuminate\Support\Facades\App::getLocale() == 'en')
+                                    <a href="{{route('settings.changeLocale', 'pl')}}" class="lg:text-white lg:hover:text-gray-300 text-gray-800 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold">
+                                        <img src="{{asset('img/pl.png')}}" style="max-height: 50px!important;" alt="">
+                                    </a>
+                                @elseif(\Illuminate\Support\Facades\App::getLocale() == 'pl')
+                                    <a href="{{route('settings.changeLocale', 'en')}}" class="lg:text-white lg:hover:text-gray-300 text-gray-800 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold">
+                                        <img src="{{asset('img/en.png')}}" style="max-height: 30px!important;" alt="">
+                                    </a>
+                                @endif
+                        </li>
                         <li class="flex items-center">
                             @if (Route::has('login'))
                                 @auth

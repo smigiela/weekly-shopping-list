@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+        <title>{{ config('app.name', 'Weekly Shopping APP') }}</title>
 
         <!-- Fonts -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
@@ -41,5 +41,22 @@
         </div>
 
         @livewireScripts
+{{--    <script>--}}
+{{--        // On page load or when changing themes, best to add inline in `head` to avoid FOUC--}}
+{{--        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {--}}
+{{--            document.documentElement.classList.add('dark')--}}
+{{--        } else {--}}
+{{--            document.documentElement.classList.remove('dark')--}}
+{{--        }--}}
+
+{{--        // Whenever the user explicitly chooses light mode--}}
+{{--        localStorage.theme = 'light'--}}
+
+{{--        // Whenever the user explicitly chooses dark mode--}}
+{{--        localStorage.theme = 'dark'--}}
+
+{{--        // Whenever the user explicitly chooses to respect the OS preference--}}
+{{--        localStorage.removeItem('theme')--}}
+{{--    </script>--}}
     </body>
 </html>
