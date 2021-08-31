@@ -15,8 +15,8 @@ class WeeklyShoppingListController extends Controller
         $weeklyShoppingList = WeeklyShoppingList::where('team_id', auth()->user()->currentTeam->id)
             ->orderByDesc('shopping_date')->latest()->first();
 
-        if (! $weeklyShoppingList) {
-            abort(404, $message = __('custom.global.nothing_to_show'));
+        if (! $weeklyShoppingList){
+            abort(404);
         }
 
         $weeklyShoppingList->load(['positions' => function($query) use (&$weeklyPositions){
