@@ -5,23 +5,33 @@
                 <div class="mt-4">
                     <h1 class="text-2xl font-bold text-gray-700">{{ $shoppingList->title }}</h1>
                     <p class="text-sm mt-2 text-gray-700 {{ App\Models\ShoppingList::mark_after_expiration($shoppingList) ? 'text-red-500' : '' }}" >
-                        {{__('custom.shopping-lists.global.shopping_date')}}: {{ $shoppingList->shopping_date }}</p>
+                        {{__('custom.shopping_lists.global.shopping_date')}}: {{ $shoppingList->shopping_date }}</p>
                     <div class="mt-3 space-x-4 p-1">
                         <ul>
-                            @forelse($shoppingList->positions as $position)
-                                <div class="flex">
-                                    <div class="w-1/2">
-                                        <li class="{{ ($position->is_done) ? 'position_is_done' : '' }}">{{$position->name}}</li>
-                                    </div>
-                                    <div class="w-1/4">
-                                        <li class="{{ ($position->is_done) ? 'position_is_done' : '' }}">{{$position->amount}}
-                                            @if($position->type == 'weight')
-                                                {{__('custom.shopping-lists.show.g')}}
-                                            @elseif($position->type == 'quantity')
-                                                {{__('custom.shopping-lists.show.qty')}}
-                                            @endif</li>
-                                    </div>
-                                </div>
+                            @forelse($shoppingList->positions->sortBy('is_done') as $position)
+                                <li class="{{ ($position->is_done) ? 'position_is_done' : '' }}">
+                                   <div class="inline-flex">
+                                       @if(!$position->is_done)
+                                           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z">
+
+                                               </path>
+                                           </svg>
+                                       @else
+                                           <svg class="w-6 h-6" fill="none" stroke="green" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z">
+
+                                               </path>
+                                           </svg>
+                                       @endif
+                                       {{$position->name}} |
+                                       {{$position->amount}}
+                                       @if($position->type == 'weight'){{__('custom.shopping_lists.global.g')}}
+                                       @elseif($position->type == 'quantity'){{__('custom.shopping_lists.global.qty')}}
+                                       @elseif($position->type == 'volume'){{__('custom.shopping_lists.global.ml')}}
+                                       @endif
+                                   </div>
+                                </li>
                                 <hr>
                             @empty
                                 {{__('custom.global.nothing_to_show')}}

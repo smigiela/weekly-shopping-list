@@ -49,7 +49,7 @@ class ShoppingListController extends Controller
 
         $shoppingList->update($request->validated());
 
-        return back(200)->with('message', __('custom.global.messages.successfully_save'));
+        return back()->with('message', __('custom.global.messages.successfully_save'));
     }
 
     public function destroy(ShoppingList $shoppingList)
