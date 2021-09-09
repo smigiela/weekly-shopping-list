@@ -4,7 +4,6 @@ use App\Http\Controllers\LocalizationController;
 use App\Http\Controllers\PositionController;
 use App\Http\Controllers\ShoppingListController;
 use App\Http\Controllers\WeeklyShoppingListController;
-use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 
 /*
