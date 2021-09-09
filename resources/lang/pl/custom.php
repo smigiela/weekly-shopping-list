@@ -10,10 +10,11 @@ return [
             'successfully_save' => 'Poprawnie zapisano',
             'successfully_delete' => 'Poprawnie usunięto',
             'successfully_restore' => 'Poprawnie przywrócono',
+            'successfully_purchase' => 'Płatność udana!',
             'dont_have_permission' => 'Nie masz uprawnień do tej akcji',
             'dont_have_permission_message' => 'Próbujesz wykonać akcję do której nie masz uprawnień',
             'not_found' => 'Nie znaleziono szukanego elementu',
-            'server_error' => 'Błąd serwera'
+            'server_error' => 'Błąd serwera',
         ],
         'roles' => [
             'admin_role_name' => 'Administrator',
@@ -31,6 +32,7 @@ return [
         'shopping_lists' => 'Listy zakupów',
         'create_weekly_list' => 'Na zakupy!',
         'weekly_list' => 'Lista tygodniowa',
+        'recipes' => 'Przepisy',
         'change_language' => 'Zmień język',
         'polish' => 'Polski',
         'english' => 'Angielski'
@@ -127,6 +129,11 @@ return [
             'license' => 'Licencja',
             'terms' => 'Regulamin',
             'privacy_policy' => 'Polityka prywatności',
+        ]
+    ],
+    'subscription' => [
+        'checkout' => [
+            'header' => 'Przejdź na wersję premium!'
         ]
     ]
 ];

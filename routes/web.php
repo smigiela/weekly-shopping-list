@@ -39,6 +39,8 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
       ->name('positions.unmarkAsDone');
   Route::post('positions/{shoppingList}', [PositionController::class, 'store'])->name('positions.store');
   Route::resource('positions', PositionController::class, ['except' => 'store']);
+
+  Route::view('recipes', 'recipes.index')->name('recipes.index');
 });
 
 Route::get('lang/{locale}', [LocalizationController::class, 'index'])->name('settings.changeLocale');
