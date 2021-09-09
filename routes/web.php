@@ -3,6 +3,7 @@
 use App\Http\Controllers\LocalizationController;
 use App\Http\Controllers\PositionController;
 use App\Http\Controllers\ShoppingListController;
+use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\WeeklyShoppingListController;
 use Illuminate\Support\Facades\Route;
 
@@ -41,6 +42,9 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
 });
 
 Route::get('lang/{locale}', [LocalizationController::class, 'index'])->name('settings.changeLocale');
+
+Route::get('/subscription', [SubscriptionController::class, 'show'])->name('subscription.show');
+Route::post('/subscription/purchase', [SubscriptionController::class, 'purchase'])->name('subscription.purchase');
 
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
