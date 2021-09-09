@@ -23,7 +23,8 @@ return [
         ],
         'dashboard' => 'Panel',
         'register' => 'Zarejestruj się',
-        'login' => 'Zaloguj się'
+        'login' => 'Zaloguj się',
+        'subscription' => 'Subskrypcja',
     ],
     'nav' => [
         'dashboard' => 'Panel',
