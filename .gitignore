@@ -16,3 +16,4 @@ yarn-error.log
 server.csr
 server.key
 server.pass.key
+public/css/app.css
