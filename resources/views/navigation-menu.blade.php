@@ -34,12 +34,26 @@
                         {{ __('custom.nav.weekly_list') }}
                     </x-jet-nav-link>
                 </div>
+
+{{--                @if(auth()->user()->subscribed('premium'))--}}
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-jet-nav-link href="{{ route('recipes.index') }}" :active="request()->routeIs('recipes.index')">
+                            {{ __('custom.nav.recipes') }}
+                        </x-jet-nav-link>
+                    </div>
+{{--                @endif--}}
+
             </div>
 
             <div class="hidden sm:flex sm:items-center sm:ml-6">
 
                 <!-- Settings Dropdown -->
-                <div class="ml-3 relative">
+                <div class="ml-3 relative inline-flex">
+                    @if(auth()->user()->subscribed('premium'))
+                        <span class="mr-6 inline-flex items-center justify-center px-2 py-1 mr-2 text-xs font-bold leading-none text-red-100 bg-red-600 rounded-full">PREMIUM</span>
+                    @else
+                        <span class="mr-6 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-indigo-100 bg-indigo-700 rounded">Free</span>
+                    @endif
                     <x-jet-dropdown align="right" width="48">
                         <x-slot name="trigger">
                             @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
@@ -75,13 +89,17 @@
                                 </x-jet-dropdown-link>
                             @endif
 
-                            <!-- Account Management -->
+                        <!-- Account Management -->
                             <div class="block px-4 py-2 text-xs text-gray-400">
                                 {{ __('Manage Account') }}
                             </div>
 
                             <x-jet-dropdown-link href="{{ route('profile.show') }}">
                                 {{ __('Profile') }}
+                            </x-jet-dropdown-link>
+
+                            <x-jet-dropdown-link href="{{route('subscription.show')}}">
+                                {{ __('custom.global.subscription') }}
                             </x-jet-dropdown-link>
 
                             @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
@@ -129,7 +147,7 @@
                                 @csrf
 
                                 <x-jet-dropdown-link href="{{ route('logout') }}"
-                                         onclick="event.preventDefault();
+                                                     onclick="event.preventDefault();
                                                 this.closest('form').submit();">
                                     {{ __('Log Out') }}
                                 </x-jet-dropdown-link>
@@ -176,6 +194,14 @@
             </x-jet-responsive-nav-link>
         </div>
 
+{{--        @if(auth()->user()->subscribed('premium'))--}}
+            <div class="pt-2 pb-3 space-y-1">
+                <x-jet-responsive-nav-link href="{{ route('recipes.index') }}" :active="request()->routeIs('recipes.index')">
+                    {{ __('custom.nav.recipes') }}
+                </x-jet-responsive-nav-link>
+            </div>
+{{--        @endif--}}
+
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200">
             <div class="flex items-center px-4">
@@ -189,6 +215,11 @@
                     <div class="font-medium text-base text-gray-800">{{ Auth::user()->name }}</div>
                     <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
                 </div>
+                @if(auth()->user()->subscribed('premium'))
+                    <span class="ml-6 inline-flex items-center justify-center px-2 py-1 mr-2 text-xs font-bold leading-none text-red-100 bg-red-600 rounded-full">PREMIUM</span>
+                @else
+                    <span class="ml-6 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-indigo-100 bg-indigo-700 rounded">Free</span>
+                @endif
             </div>
 
             <div class="mt-3 space-y-1">
@@ -197,18 +228,22 @@
                     {{ __('Profile') }}
                 </x-jet-responsive-nav-link>
 
+                <x-jet-responsive-nav-link href="{{route('subscription.show')}}" :active="request()->routeIs('subscription.show')">
+                    {{ __('custom.global.subscription') }}
+                </x-jet-responsive-nav-link>
+
                 @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
                     <x-jet-responsive-nav-link href="{{ route('api-tokens.index') }}" :active="request()->routeIs('api-tokens.index')">
                         {{ __('API Tokens') }}
                     </x-jet-responsive-nav-link>
                 @endif
 
-                <!-- Authentication -->
+            <!-- Authentication -->
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
 
                     <x-jet-responsive-nav-link href="{{ route('logout') }}"
-                                   onclick="event.preventDefault();
+                                               onclick="event.preventDefault();
                                     this.closest('form').submit();">
                         {{ __('Log Out') }}
                     </x-jet-responsive-nav-link>
