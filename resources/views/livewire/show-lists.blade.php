@@ -4,7 +4,7 @@
             <div class="p-6 bg-white rounded-xl shadow-xl hover:shadow-2xl hover:scale-105 transition-all transform duration-500">
                 <div class="mt-4">
                     <h1 class="text-2xl font-bold text-gray-700">{{ $shoppingList->title }}</h1>
-                    <p class="text-sm mt-2 text-gray-700 {{ App\Models\ShoppingList::mark_after_expiration($shoppingList) ? 'text-red-500' : '' }}" >
+                    <p class="text-sm mt-2 text-gray-700 {{ App\Models\Shopping_lists\ShoppingList::mark_after_expiration($shoppingList) ? 'text-red-500' : '' }}" >
                         {{__('custom.shopping_lists.global.shopping_date')}}: {{ $shoppingList->shopping_date }}</p>
                     <div class="mt-3 space-x-4 p-1">
                         <ul>

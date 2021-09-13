@@ -24,8 +24,8 @@ class WeeklyListStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'shopping_from' => ['required', 'date'],
-            'shopping_to' => ['required', 'date'],
+            'date_from' => ['required', 'date'],
+            'date_to' => ['required', 'date'],
         ];
     }
 }

@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\ShoppingList;
+use App\Models\Shopping_lists\ShoppingList;
 use Livewire\Component;
 use Livewire\WithPagination;
 

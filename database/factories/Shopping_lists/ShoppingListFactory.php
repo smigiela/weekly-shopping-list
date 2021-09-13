@@ -1,8 +1,8 @@
 <?php
 
-namespace Database\Factories;
+namespace Database\Factories\Shopping_lists;
 
-use App\Models\ShoppingList;
+use App\Models\Shopping_lists\ShoppingList;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ShoppingListFactory extends Factory

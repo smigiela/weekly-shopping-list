@@ -2,8 +2,8 @@
 
 namespace App\Providers;
 
-use App\Models\Position;
-use App\Models\ShoppingList;
+use App\Models\Shopping_lists\Position;
+use App\Models\Shopping_lists\ShoppingList;
 use App\Observers\PositionObserver;
 use App\Observers\ShoppingListObserver;
 use Illuminate\Support\ServiceProvider;

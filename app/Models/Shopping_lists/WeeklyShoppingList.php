@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Shopping_lists;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -11,8 +11,8 @@ class WeeklyShoppingList extends Model
 
     protected $fillable = [
         'shopping_date',
-        'shopping_from',
-        'shopping_to',
+        'date_from',
+        'date_to',
         'team_id'
     ];
 

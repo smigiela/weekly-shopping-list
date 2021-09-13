@@ -15,8 +15,8 @@ class AddColumnsToWeeklyShoppingListsTable extends Migration
     {
         Schema::table('weekly_shopping_lists', function (Blueprint $table) {
             $table->string('name')->default('New weekly list')->after('id');
-            $table->date('shopping_from')->default(today())->after('shopping_date');
-            $table->date('shopping_to')->default(today())->after('shopping_from');
+            $table->date('date_from')->default(today())->after('shopping_date');
+            $table->date('date_to')->default(today())->after('date_from');
         });
     }
 

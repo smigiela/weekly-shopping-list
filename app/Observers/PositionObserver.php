@@ -2,7 +2,7 @@
 
 namespace App\Observers;
 
-use App\Models\Position;
+use App\Models\Shopping_lists\Position;
 
 class PositionObserver
 {

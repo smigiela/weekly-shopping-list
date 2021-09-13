@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Shopping_lists;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePositionRequest;
-use App\Models\Position;
-use App\Models\ShoppingList;
-use Illuminate\Http\Request;
+use App\Models\Shopping_lists\Position;
+use App\Models\Shopping_lists\ShoppingList;
 
 class PositionController extends Controller
 {

@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\Shopping_lists\ShoppingList;
+use App\Models\Recipes\Recipe;
 use Illuminate\Database\Seeder;
 
-class ShoppingListSeeder extends Seeder
+class RecipeSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,7 +14,6 @@ class ShoppingListSeeder extends Seeder
      */
     public function run()
     {
-        ShoppingList::unsetEventDispatcher();
-        ShoppingList::factory()->count(20)->create();
+        Recipe::factory()->count(100)->create();
     }
 }

@@ -1,19 +1,18 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Shopping_lists;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\WeeklyListStoreRequest;
-use App\Models\ShoppingList;
+use App\Models\Shopping_lists\ShoppingList;
 use App\Models\User;
-use App\Models\WeeklyShoppingList;
-use Illuminate\Http\Request;
+use App\Models\Shopping_lists\WeeklyShoppingList;
 
 class WeeklyShoppingListController extends Controller
 {
     public function index()
     {
-        $weeklyShoppingList = WeeklyShoppingList::where('team_id', auth()->user()->currentTeam->id)
-            ->orderByDesc('shopping_date')->latest()->first();
+        $weeklyShoppingList = WeeklyShoppingList::where('team_id', auth()->user()->currentTeam->id)->first();
 
         if (! $weeklyShoppingList){
             abort(404);
@@ -35,10 +34,16 @@ class WeeklyShoppingListController extends Controller
 
     public function store(WeeklyListStoreRequest $request)
     {
+        $lastWeeklyList = WeeklyShoppingList::where('team_id', auth()->user()->currentTeam->id)->first();
+
+        if ($lastWeeklyList){
+            $lastWeeklyList->delete();
+        }
+
         $weeklyShoppingList = WeeklyShoppingList::create([
             'shopping_date' => $request->date_to,
-            'shopping_from' => $request->date_from,
-            'shopping_to' => $request->date_to,
+            'date_from' => $request->date_from,
+            'date_to' => $request->date_to,
             'team_id' => User::find(auth()->id())->currentTeam->id,
         ]);
 
@@ -52,11 +57,11 @@ class WeeklyShoppingListController extends Controller
             $shoppingList->save();
         }
 
-        return back()->with('message', __('custom.global.messages.successfully_save'));
+        return redirect()->route('weekly_lists.index')->with('message', __('custom.global.messages.successfully_save'));
     }
 
-    public function destroy()
+    public function destroy(WeeklyShoppingList $weeklyShoppingList)
     {
-
+        return $weeklyShoppingList->delete();
     }
 }

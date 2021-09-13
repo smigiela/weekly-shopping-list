@@ -2,14 +2,14 @@
 
 namespace App\Observers;
 
-use App\Models\ShoppingList;
+use App\Models\Shopping_lists\ShoppingList;
 
 class ShoppingListObserver
 {
     /**
      * Handle the ShoppingList "created" event.
      *
-     * @param  \App\Models\ShoppingList  $shoppingList
+     * @param ShoppingList $shoppingList
      * @return void
      */
     public function created(ShoppingList $shoppingList)
@@ -20,7 +20,7 @@ class ShoppingListObserver
     /**
      * Handle the ShoppingList "updated" event.
      *
-     * @param  \App\Models\ShoppingList  $shoppingList
+     * @param ShoppingList $shoppingList
      * @return void
      */
     public function updated(ShoppingList $shoppingList)

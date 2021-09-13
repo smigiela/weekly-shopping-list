@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Shopping_lists;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreShoppingListRequest;
-use App\Models\ShoppingList;
+use App\Models\Shopping_lists\ShoppingList;
 
 class ShoppingListController extends Controller
 {
