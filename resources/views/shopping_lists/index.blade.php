@@ -20,7 +20,7 @@
 
     <div class="py-12">
         <div class="mx-auto sm:px-6 lg:px-8">
-            <div class="flex gap-4 overflow-hidden shadow-xl sm:rounded-lg">
+            <div class="flex gap-4 overflow-hidden sm:rounded-lg">
                 <div class="w-full">
                     @livewire('show-lists')
                 </div>

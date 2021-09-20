@@ -37,6 +37,12 @@
             <!-- Page Content -->
             <main>
                 @include('partials.message')
+                <!-- back button -->
+                    <div class="relative inline-flex hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <a href="javascript:history.back()" class="mt-3 text-lg block font-semibold py-2 px-2
+                                        text-white hover:text-green-100 bg-green-200 rounded-lg
+                                        shadow hover:shadow-md transition duration-300">{{__('custom.global.back')}}</a>
+                    </div>
                 {{ $slot }}
             </main>
         </div>

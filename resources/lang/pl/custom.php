@@ -3,6 +3,7 @@
 return [
     'global' => [
         'nothing_to_show' => 'Nie ma nic do pokazania',
+        'back' => 'Powrót',
         'edit' => 'Edytuj',
         'choose' => 'Wybierz',
         'save' => 'Zapisz',

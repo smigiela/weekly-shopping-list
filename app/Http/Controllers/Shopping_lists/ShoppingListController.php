@@ -73,7 +73,7 @@ class ShoppingListController extends Controller
     {
         $archivedLists = ShoppingList::with('positions')
             ->where('team_id', auth()->user()->currentTeam->id)
-            ->onlyTrashed()->get();
+            ->onlyTrashed()->paginate(6);
 
         return view('shopping_lists.archivedLists', compact('archivedLists'));
     }
