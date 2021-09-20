@@ -6,6 +6,7 @@ return [
         'edit' => 'Edytuj',
         'choose' => 'Wybierz',
         'save' => 'Zapisz',
+        'there' => 'TUTAJ',
         'messages' => [
             'successfully_save' => 'Poprawnie zapisano',
             'successfully_delete' => 'Poprawnie usunięto',
@@ -13,6 +14,7 @@ return [
             'successfully_purchase' => 'Płatność udana!',
             'dont_have_permission' => 'Nie masz uprawnień do tej akcji',
             'dont_have_permission_message' => 'Próbujesz wykonać akcję do której nie masz uprawnień',
+            'dont_have_active_subscription' => 'Nie masz aktywnej subskrypcji.',
             'not_found' => 'Nie znaleziono szukanego elementu',
             'server_error' => 'Błąd serwera',
         ],
@@ -134,6 +136,24 @@ return [
     'subscription' => [
         'checkout' => [
             'header' => 'Przejdź na wersję premium!'
+        ]
+    ],
+    'recipes' => [
+        'index' => [
+            'header' => 'Przepisy',
+        ],
+        'create' => [
+            'header' => 'Utwórz przepis',
+            'name' => 'Nazwa przepisu',
+            'description' => 'Opis',
+            'image' => 'Zdjęcie',
+            'items' => 'Składniki',
+            'change_image' => 'Zmień zdjęcie'
+        ],
+        'show' => [
+            'header' => 'Przepis: ',
+            'no_product_on_list' => 'Nie ma twojego produktu na liście? Dodaj go: ',
+            'list' => 'Lista składników'
         ]
     ]
 ];

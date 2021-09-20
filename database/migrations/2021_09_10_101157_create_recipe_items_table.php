@@ -15,7 +15,10 @@ class CreateRecipeItemsTable extends Migration
     {
         Schema::create('recipe_items', function (Blueprint $table) {
             $table->id();
-
+            $table->string('name');
+            $table->integer('amount');
+            $table->enum('amount_type', ['quantity', 'weight', 'volume'])->nullable();
+            $table->foreignId('recipe_id')->constrained('recipes');
             $table->softDeletes();
             $table->timestamps();
         });

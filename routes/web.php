@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\LocalizationController;
+use App\Http\Controllers\Recipes\RecipeController;
+use App\Http\Controllers\Recipes\RecipeItemController;
 use App\Http\Controllers\Shopping_lists\PositionController;
 use App\Http\Controllers\Shopping_lists\ShoppingListController;
 use App\Http\Controllers\SubscriptionController;
@@ -31,6 +33,10 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
   Route::resource('positions', PositionController::class, ['except' => 'store']);
 
   Route::view('recipes', 'recipes.index')->name('recipes.index');
+  Route::resource('recipes', RecipeController::class);
+
+  Route::post('recipe_items/{recipe}', [RecipeItemController::class, 'store'])->name('recipe_items.store');
+  Route::resource('recipes_items', RecipeItemController::class, ['except' => 'store']);
 });
 
 Route::get('lang/{locale}', [LocalizationController::class, 'index'])->name('settings.changeLocale');
