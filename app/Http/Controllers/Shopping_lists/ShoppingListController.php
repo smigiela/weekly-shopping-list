@@ -89,13 +89,25 @@ class ShoppingListController extends Controller
 
     public function restoreShoppingList(Request $request, $id)
     {
-//        ShoppingList::check_permission($shoppingList);
-
         $shoppingList = ShoppingList::withTrashed()->findOrFail($id);
+
+        ShoppingList::check_permission($shoppingList);
+
         $shoppingList->restore();
         $shoppingList->update(['shopping_date' => $request->shopping_date]);
 
         return redirect()->route('shopping_lists.index')
             ->with('message', __('custom.global.messages.successfully_restore'));
+    }
+
+    /**
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function permanentlyDestroy($id)
+    {
+        ShoppingList::withTrashed()->findOrFail($id)->forceDelete();
+
+        return back()->with('message', __('custom.global.messages.successfully_delete'));
     }
 }

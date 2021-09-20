@@ -37,11 +37,15 @@
                                     </div>
                                     <div class="mt-4 mb-2 flex justify-between pl-2 pr-1">
                                         <a href="{{route('shopping_lists.editArchivedList', $archivedList)}}" class="text-lg block font-semibold py-2 px-6
-                        text-white hover:text-green-100 bg-blue-400 rounded-lg
-                        shadow hover:shadow-md transition duration-300">{{__('custom.shopping_lists.archived_lists.index.restore')}}</a>
-                                        <a href="{{route('shopping_lists.show', $archivedList)}}" class="text-lg block font-semibold py-2 px-6
-                        text-white hover:text-green-100 bg-red-400 rounded-lg
-                        shadow hover:shadow-md transition duration-300">{{__('custom.global.permanently_delete')}}</a>
+                                            text-white hover:text-green-100 bg-blue-400 rounded-lg
+                                            shadow hover:shadow-md transition duration-300">{{__('custom.shopping_lists.archived_lists.index.restore')}}</a>
+                                        <form action="{{route('shopping_lists.permanentlyDestroy', $archivedList)}}" method="post">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button class="text-lg block font-semibold py-2 px-6
+                                            text-white hover:text-green-100 bg-red-400 rounded-lg
+                                            shadow hover:shadow-md transition duration-300">{{__('custom.global.permanently_delete')}}</button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>

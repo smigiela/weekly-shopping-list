@@ -40,11 +40,11 @@
                     </div>
                     <div class="mt-4 mb-2 flex justify-between pl-2 pr-1">
                         <a href="{{route('shopping_lists.edit', $shoppingList)}}" class="text-lg block font-semibold py-2 px-6
-                        text-white hover:text-green-100 bg-blue-400 rounded-lg
-                        shadow hover:shadow-md transition duration-300">{{__('custom.global.edit')}}</a>
+                            text-white hover:text-green-100 bg-blue-400 rounded-lg
+                            shadow hover:shadow-md transition duration-300">{{__('custom.global.edit')}}</a>
                         <a href="{{route('shopping_lists.show', $shoppingList)}}" class="text-lg block font-semibold py-2 px-6
-                        text-white hover:text-green-100 bg-green-400 rounded-lg
-                        shadow hover:shadow-md transition duration-300">{{__('custom.global.choose')}}</a>
+                            text-white hover:text-green-100 bg-green-400 rounded-lg
+                            shadow hover:shadow-md transition duration-300">{{__('custom.global.choose')}}</a>
 
                         <form action="{{route('shopping_lists.destroy', $shoppingList)}}" method="post">
                             @CSRF
