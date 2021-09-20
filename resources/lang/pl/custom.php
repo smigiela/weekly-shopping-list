@@ -6,6 +6,7 @@ return [
         'edit' => 'Edytuj',
         'choose' => 'Wybierz',
         'save' => 'Zapisz',
+        'permanently_delete' => 'Usuń na zawsze!',
         'there' => 'TUTAJ',
         'messages' => [
             'successfully_save' => 'Poprawnie zapisano',
@@ -52,6 +53,7 @@ return [
         'index' => [
             'header' => 'Twoje listy zakupów',
             'title' => 'Nazwa listy',
+            'get_archived' => 'Zarchiwizowane listy'
         ],
         'create' => [
             'header' => 'Dodaj listę zakupów w zespole:',
@@ -61,6 +63,11 @@ return [
         'edit' => [
             'header' => 'Edytuj listę zakupów',
             'title' => 'Nazwa listy',
+            'shopping_date' => 'Data zakupu',
+        ],
+        'restore' => [
+            'header' => 'Przywracasz listę zakupów - wprowadź nową datę zakupów',
+//            'title' => 'Nazwa listy',
             'shopping_date' => 'Data zakupu',
         ],
         'show' => [
@@ -82,6 +89,13 @@ return [
             'show' => [
                 'header' => 'Lista zbiorcza',
             ],
+        ],
+        'archived_lists' => [
+            'index' => [
+                'header' => 'Zarchiwizowane listy',
+                'restore' => 'Przywróć'
+            ],
+
         ],
     ],
     'positions' => [

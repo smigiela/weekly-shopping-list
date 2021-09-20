@@ -14,6 +14,13 @@ Route::get('/', function () {
 })->name('welcome');
 
 Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
+
+  Route::get('shopping_lists/archived/{shopping_list}', [ShoppingListController::class, 'editArchivedLists'])
+      ->name('shopping_lists.editArchivedList');
+  Route::put('shopping_lists/{shopping_list}/restore', [ShoppingListController::class, 'restoreShoppingList'])
+      ->name('shopping_lists.restore');
+  Route::get('shopping_lists/archived', [ShoppingListController::class, 'getArchivedLists'])
+      ->name('shopping_lists.getArchived');
   Route::resource('shopping_lists', ShoppingListController::class);
 
   Route::get('weekly_shopping_lists', [WeeklyShoppingListController::class, 'index'])

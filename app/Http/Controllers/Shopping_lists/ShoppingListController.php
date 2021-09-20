@@ -5,9 +5,14 @@ namespace App\Http\Controllers\Shopping_lists;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreShoppingListRequest;
 use App\Models\Shopping_lists\ShoppingList;
+use Illuminate\Http\Request;
 
 class ShoppingListController extends Controller
 {
+    /**
+     * Get lists for the team - implement in livewire component
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     public function index()
     {
         return view('shopping_lists.index');
@@ -60,5 +65,35 @@ class ShoppingListController extends Controller
         $shoppingList->delete();
 
         return back(200)->with('message', __('custom.global.messages.successfully_delete'));
+    }
+
+    public function getArchivedLists()
+    {
+        $archivedLists = ShoppingList::with('positions')
+            ->where('team_id', auth()->user()->currentTeam->id)
+            ->onlyTrashed()->get();
+
+        return view('shopping_lists.archivedLists', compact('archivedLists'));
+    }
+
+    public function editArchivedLists($id)
+    {
+        $shoppingList = ShoppingList::withTrashed()->findOrFail($id);
+
+        ShoppingList::check_permission($shoppingList);
+
+        return view('shopping_lists.restore', compact('shoppingList'));
+    }
+
+    public function restoreShoppingList(Request $request, $id)
+    {
+//        ShoppingList::check_permission($shoppingList);
+
+        $shoppingList = ShoppingList::withTrashed()->findOrFail($id);
+        $shoppingList->restore();
+        $shoppingList->update(['shopping_date' => $request->shopping_date]);
+
+        return redirect()->route('shopping_lists.index')
+            ->with('message', __('custom.global.messages.successfully_restore'));
     }
 }

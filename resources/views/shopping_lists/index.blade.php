@@ -1,8 +1,21 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('custom.shopping_lists.index.header') }}
-        </h2>
+        <div class="flex justify-between">
+            <div class="flex">
+                <div class="flex-shrink-0 flex items-center">
+                    <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                        {{ __('custom.shopping_lists.index.header') }}
+                    </h2>
+                </div>
+                <div class="ml-6">
+                    <a href="{{route('shopping_lists.getArchived')}}"
+                       class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                        {{__('custom.shopping_lists.index.get_archived')}}
+                    </a>
+                </div>
+            </div>
+        </div>
+
     </x-slot>
 
     <div class="py-12">

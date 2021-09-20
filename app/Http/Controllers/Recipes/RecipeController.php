@@ -35,7 +35,7 @@ class RecipeController extends Controller
     public function show(Recipe $recipe)
     {
         //TODO: dodać zapisywanie zdjęcia
-        
+
         $products = Product::all();
         $recipe->load('recipeItems');
 
