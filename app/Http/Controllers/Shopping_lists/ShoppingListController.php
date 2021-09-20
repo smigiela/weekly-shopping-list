@@ -60,11 +60,13 @@ class ShoppingListController extends Controller
 
     public function destroy(ShoppingList $shoppingList)
     {
+        //TODO:: dodać usuwanie pozycji razem z lista
+
         ShoppingList::check_permission($shoppingList);
 
         $shoppingList->delete();
 
-        return back(200)->with('message', __('custom.global.messages.successfully_delete'));
+        return back()->with('message', __('custom.global.messages.successfully_archived'));
     }
 
     public function getArchivedLists()

@@ -45,6 +45,14 @@
                         <a href="{{route('shopping_lists.show', $shoppingList)}}" class="text-lg block font-semibold py-2 px-6
                         text-white hover:text-green-100 bg-green-400 rounded-lg
                         shadow hover:shadow-md transition duration-300">{{__('custom.global.choose')}}</a>
+
+                        <form action="{{route('shopping_lists.destroy', $shoppingList)}}" method="post">
+                            @CSRF
+                            @method('DELETE')
+                            <button type="submit" class="text-lg block font-semibold py-2 px-6
+                        text-white hover:text-green-100 bg-red-400 rounded-lg
+                        shadow hover:shadow-md transition duration-300">{{__('custom.global.archive')}}</button>
+                        </form>
                     </div>
                 </div>
             </div>
