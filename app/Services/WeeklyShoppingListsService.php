@@ -21,9 +21,23 @@ class WeeklyShoppingListsService
         }
     }
 
-    public function getWeeklyList()
+    /**
+     * @return mixed
+     */
+    public function getWeeklyList(): WeeklyShoppingList
     {
         return WeeklyShoppingList::where('team_id', auth()->user()->currentTeam->id)->first();
+    }
+
+    public function getWeeklyPositions()
+    {
+        $this->getWeeklyList()->load(['positions' => function($query) use (&$weeklyPositions){
+            $weeklyPositions = $query->groupBy('name')
+                ->selectRaw('positions.id,name,type, sum(amount) as sum, is_done')
+                ->get();
+        }]);
+
+        return $weeklyPositions;
     }
 
     /**
