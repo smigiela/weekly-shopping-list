@@ -106,7 +106,9 @@ class ShoppingListController extends Controller
      */
     public function permanentlyDestroy($id)
     {
-        ShoppingList::withTrashed()->findOrFail($id)->forceDelete();
+        $shoppingList = ShoppingList::withTrashed()->findOrFail($id)->forceDelete();
+
+        ShoppingList::check_permission($shoppingList);
 
         return back()->with('message', __('custom.global.messages.successfully_delete'));
     }

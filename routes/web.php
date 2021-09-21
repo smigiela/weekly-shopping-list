@@ -31,6 +31,8 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
       ->name('weekly_lists.create');
   Route::post('weekly_shopping_lists', [WeeklyShoppingListController::class, 'store'])
       ->name('weekly_lists.store');
+  Route::get('weekly_shopping_lists/{weeklyShoppingList}/downloadpdf', [WeeklyShoppingListController::class, 'downloadPdf'])
+      ->name('weekly_lists.downloadpdf');
 
   Route::get('positions/restore/{position_id}', [PositionController::class, 'restore'])
       ->name('positions.restore');

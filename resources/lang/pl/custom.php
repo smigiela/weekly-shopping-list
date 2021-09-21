@@ -91,6 +91,13 @@ return [
             ],
             'show' => [
                 'header' => 'Lista zbiorcza',
+                'generate_pdf' => 'Wyświetl PDF'
+            ],
+            'pdf' => [
+                'title' => 'Lista zakupów na: ',
+                'position_name' => 'Nazwa produktu',
+                'amount' => 'Ilość',
+
             ],
         ],
         'archived_lists' => [
