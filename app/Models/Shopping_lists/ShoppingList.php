@@ -2,6 +2,7 @@
 
 namespace App\Models\Shopping_lists;
 
+use App\Models\Recipes\ProductCategory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -16,6 +17,11 @@ class ShoppingList extends Model
         'shopping_date',
         'team_id',
     ];
+
+    public function productCategories()
+    {
+        return $this->hasMany(ProductCategory::class);
+    }
 
     public function positions()
     {

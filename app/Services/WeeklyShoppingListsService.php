@@ -16,6 +16,9 @@ class WeeklyShoppingListsService
     public static function checkIfExist($team_id): bool
     {
         $weeklyShoppingList = WeeklyShoppingList::where('team_id', $team_id)->first();
+        if (! $weeklyShoppingList){
+            return false;
+        }
         if ($weeklyShoppingList) {
             return true;
         }
@@ -32,7 +35,7 @@ class WeeklyShoppingListsService
     public function getWeeklyPositions()
     {
         $this->getWeeklyList()->load(['positions' => function($query) use (&$weeklyPositions){
-            $weeklyPositions = $query->groupBy('name')
+            $weeklyPositions = $query->groupBy('name', 'type')
                 ->selectRaw('positions.id,name,type, sum(amount) as sum, is_done')
                 ->get();
         }]);

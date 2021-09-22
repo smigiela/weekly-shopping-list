@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Shopping_lists;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreShoppingListRequest;
+use App\Models\Recipes\ProductCategory;
 use App\Models\Shopping_lists\ShoppingList;
 use Illuminate\Http\Request;
 
@@ -41,9 +42,11 @@ class ShoppingListController extends Controller
         $shoppingList = ShoppingList::with('positions')
             ->where('team_id', auth()->user()->currentTeam->id)->with('positions')->findOrFail($id);
 
+        $productCategories = ProductCategory::with('products')->get();
+
         ShoppingList::check_permission($shoppingList);
 
-        return view('shopping_lists.show', compact('shoppingList', ));
+        return view('shopping_lists.show', compact('shoppingList', 'productCategories'));
     }
 
     public function edit(ShoppingList $shoppingList)

@@ -25,7 +25,8 @@ class PositionFactory extends Factory
             'name' => $this->faker->word,
             'amount' => $this->faker->numberBetween(1,5000),
             'type' => $this->faker->randomElement(['weight', 'quantity']),
-            'shopping_list_id' => rand(1,20)
+            'shopping_list_id' => rand(1,20),
+            'product_category_id' => rand(1,10)
         ];
     }
 }

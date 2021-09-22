@@ -16,7 +16,7 @@
                         </p>
                         <div class="mt-3 space-x-4 p-1">
                             <ul>
-                                @forelse($weeklyPositions->sortBy('is_done') as $position)
+                                @forelse($weeklyPositions->sortBy(['product_category_id', 'is_done']) as $position)
                                     <li class="{{ ($position->is_done) ? 'position_is_done' : '' }}">
                                         <div class="inline-flex">
                                             @if(!$position->is_done)

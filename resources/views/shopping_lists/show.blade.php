@@ -15,28 +15,25 @@
                             {{__('custom.shopping_lists.global.shopping_date')}}: {{ $shoppingList->shopping_date }}</p>
                         <div class="mt-3 space-x-4 p-1">
                             <ul>
-                                @forelse($shoppingList->positions->sortBy('is_done') as $position)
+                                @forelse($shoppingList->positions->sortBy(['product_category_id', 'is_done']) as $position)
                                     <li class="{{ ($position->is_done) ? 'position_is_done' : '' }}">
                                         <div class="inline-flex">
                                             @if(!$position->is_done)
-                                                <svg class="w-6 h-6" fill="none" stroke="currentColor"
-                                                     viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                          stroke-width="2"
-                                                          d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z">
-
-                                                    </path>
-                                                </svg>
+                                                <div class="text-red-500">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6"
+                                                         fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                              stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                                                    </svg>
+                                                </div>
                                             @else
-
-                                                <svg class="w-6 h-6" fill="none" stroke="green" viewBox="0 0 24 24"
-                                                     xmlns="http://www.w3.org/2000/svg">
-                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                          stroke-width="2"
-                                                          d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z">
-
-                                                    </path>
-                                                </svg>
+                                                <div class="text-green-600">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6"
+                                                         fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                              stroke-width="2" d="M5 13l4 4L19 7"/>
+                                                    </svg>
+                                                </div>
                                             @endif
                                             {{$position->name}} |
                                             {{$position->amount}}
@@ -94,12 +91,18 @@
                                     {{__('custom.shopping_lists.show.add_position')}}
                                 </label>
                                 <div class="mt-1 flex rounded-md shadow-sm">
-                                    <input type="text" name="name" id="name"
-                                           value="{{old('name')}}"
-                                           class="@error('name') border-red-500 @enderror
-                                               focus:ring-indigo-500 focus:border-indigo-500 flex-1
-                                               block w-full rounded-none rounded-r-md sm:text-sm border-gray-300">
-
+                                    <x-jet-label for="name" class="block text-sm font-medium text-gray-700">
+                                        {{__('custom.shopping_lists.show.add_position')}}
+                                    </x-jet-label>
+                                    <select name="name" id="name" class="form-select focus:ring-indigo-500 focus:border-indigo-500 flex-1--}}
+                                          block w-full rounded-none rounded-r-md sm:text-sm border-gray-300">
+                                        @foreach($productCategories as $category)
+                                            <option disabled>{{$category->name}}</option>
+                                            @foreach($category->products as $product)
+                                                <option value="{{$product->name}}">--{{$product->name}}</option>
+                                            @endforeach
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
                             <div class="ml-2 w-1/4">
@@ -129,13 +132,7 @@
                                         <option value="weight">{{__('custom.shopping_lists.global.g')}}</option>
                                         <option value="volume">{{__('custom.shopping_lists.global.ml')}}</option>
                                     </select>
-                                    <div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
-                                        <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
-                                            <path
-                                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                                clip-rule="evenodd" fill-rule="evenodd"></path>
-                                        </svg>
-                                    </div>
+
                                 </div>
                             </div>
                         </div>
