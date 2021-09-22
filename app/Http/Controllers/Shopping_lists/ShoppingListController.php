@@ -32,6 +32,10 @@ class ShoppingListController extends Controller
             ->with('message', __('custom.global.messages.successfully_save'));
     }
 
+    /**
+     * @param $id
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     public function show($id)
     {
         $shoppingList = ShoppingList::with('positions')

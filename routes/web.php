@@ -21,7 +21,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
       ->name('shopping_lists.restore');
   Route::get('shopping_lists/archived', [ShoppingListController::class, 'getArchivedLists'])
       ->name('shopping_lists.getArchived');
-  Route::delete('shopping_lists/{id}', [ShoppingListController::class, 'permanentlyDestroy'])
+  Route::delete('shopping_lists/archived/{id}', [ShoppingListController::class, 'permanentlyDestroy'])
       ->name('shopping_lists.permanentlyDestroy');
   Route::resource('shopping_lists', ShoppingListController::class);
 

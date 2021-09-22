@@ -15,8 +15,8 @@ class CreatePositionsTable extends Migration
     {
         Schema::create('positions', function (Blueprint $table) {
             $table->id();
-            $table->integer('amount')->nullable();
             $table->string('name');
+            $table->integer('amount')->nullable();
             $table->enum('type', ['quantity', 'weight', 'volume'])->nullable();
             $table->foreignId('shopping_list_id')->constrained('shopping_lists')->cascadeOnDelete();
             $table->timestamps();
