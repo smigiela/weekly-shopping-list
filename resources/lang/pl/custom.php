@@ -16,6 +16,8 @@ return [
             'successfully_restore' => 'Poprawnie przywrócono',
             'successfully_archived' => 'Zarchiwizowano poprawnie!',
             'successfully_purchase' => 'Płatność udana!',
+            'successfully_favourite' => 'Dodano do ulubionych!',
+            'successfully_remove_favourite' => 'Usunięto z ulubionych!',
             'dont_have_permission' => 'Nie masz uprawnień do tej akcji',
             'dont_have_permission_message' => 'Próbujesz wykonać akcję do której nie masz uprawnień',
             'dont_have_active_subscription' => 'Nie masz aktywnej subskrypcji.',
@@ -41,7 +43,8 @@ return [
         'recipes' => 'Przepisy',
         'change_language' => 'Zmień język',
         'polish' => 'Polski',
-        'english' => 'Angielski'
+        'english' => 'Angielski',
+        'fav_products' => 'Ulubione produkty'
     ],
     'teams' => [
         'team_member_manager_email' => 'Podaj adres email osoby, którą chcesz dodać do tego zespołu. Będziecie mieć równy dostep do list zakupów w zespole.'
@@ -81,6 +84,8 @@ return [
             'amount' => 'Ilość',
             'type' => 'Typ',
             'type_placeholder' => 'Wybierz ilość, objętość lub waga',
+            'favourites' => 'Ulubione',
+            'add_fav_in_settings' => 'Dodaj produkty do ulubionych w ustawieniach'
         ],
         'weekly_list' => [
             'create' => [
@@ -113,6 +118,11 @@ return [
             'header' => 'Edytuj pozycję',
             'product' => 'Nazwa produktu',
         ]
+    ],
+    'products' => [
+        'index' => [
+          'header' => 'Produkty - dodaj do ulubionych!'
+        ],
     ],
     'home_page' => [
         'nav' => [

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\LocalizationController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\Recipes\RecipeController;
 use App\Http\Controllers\Recipes\RecipeItemController;
 use App\Http\Controllers\Shopping_lists\PositionController;
@@ -42,6 +43,12 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
       ->name('positions.unmarkAsDone');
   Route::post('positions/{shoppingList}', [PositionController::class, 'store'])->name('positions.store');
   Route::resource('positions', PositionController::class, ['except' => 'store']);
+
+  Route::get('/products', [ProductController::class, 'index'])->name('products.index');
+  Route::get('products/{product}/fav', [ProductController::class, 'addProductToFavourites'])
+      ->name('products.addToFav');
+    Route::get('products/{product}/unfav', [ProductController::class, 'removeProductFromFavourites'])
+        ->name('products.removeFromFav');
 
   Route::view('recipes', 'recipes.index')->name('recipes.index');
   Route::resource('recipes', RecipeController::class);

@@ -114,6 +114,10 @@
                                 {{ __('custom.global.subscription') }}
                             </x-jet-dropdown-link>
 
+                            <x-jet-dropdown-link href="{{route('products.index')}}">
+                                {{ __('custom.nav.fav_products') }}
+                            </x-jet-dropdown-link>
+
                             @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
                                 <x-jet-dropdown-link href="{{ route('api-tokens.index') }}">
                                     {{ __('API Tokens') }}
@@ -263,6 +267,11 @@
                 <x-jet-responsive-nav-link href="{{route('subscription.show')}}"
                                            :active="request()->routeIs('subscription.show')">
                     {{ __('custom.global.subscription') }}
+                </x-jet-responsive-nav-link>
+
+                <x-jet-responsive-nav-link href="{{route('products.index')}}"
+                                           :active="request()->routeIs('products.index')">
+                    {{ __('custom.nav.fav_products') }}
                 </x-jet-responsive-nav-link>
 
                 @if (Laravel\Jetstream\Jetstream::hasApiFeatures())

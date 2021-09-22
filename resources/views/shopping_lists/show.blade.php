@@ -91,13 +91,19 @@
                                     {{__('custom.shopping_lists.show.add_position')}}
                                 </label>
                                 <div class="mt-1 flex rounded-md shadow-sm">
-                                    <x-jet-label for="name" class="block text-sm font-medium text-gray-700">
-                                        {{__('custom.shopping_lists.show.add_position')}}
-                                    </x-jet-label>
                                     <select name="name" id="name" class="form-select focus:ring-indigo-500 focus:border-indigo-500 flex-1--}}
                                           block w-full rounded-none rounded-r-md sm:text-sm border-gray-300">
+                                        <option class="font-bold" disabled>{{__('custom.shopping_lists.show.favourites')}}</option>
+                                        @if((auth()->user()->favourites)->count() == 0)
+                                            <option class="text-red-500" disabled>--{{__('custom.shopping_lists.show.add_fav_in_settings')}}</option>
+                                        @endif
+                                        @foreach (auth()->user()->favourites as $product)
+                                            <option value="{{$product->name}}">
+                                                ⭐{{$product->name}}
+                                            </option>
+                                        @endforeach
                                         @foreach($productCategories as $category)
-                                            <option disabled>{{$category->name}}</option>
+                                            <option class="font-bold" disabled>{{$category->name}}</option>
                                             @foreach($category->products as $product)
                                                 <option value="{{$product->name}}">--{{$product->name}}</option>
                                             @endforeach

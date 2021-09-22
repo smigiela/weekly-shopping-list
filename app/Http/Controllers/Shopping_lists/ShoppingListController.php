@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Shopping_lists;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreShoppingListRequest;
-use App\Models\Recipes\ProductCategory;
+use App\Models\ProductCategory;
 use App\Models\Shopping_lists\ShoppingList;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
