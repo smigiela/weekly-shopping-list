@@ -6,26 +6,27 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreShoppingListRequest;
 use App\Models\Recipes\ProductCategory;
 use App\Models\Shopping_lists\ShoppingList;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class ShoppingListController extends Controller
 {
     /**
      * Get lists for the team - implement in livewire component
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function index()
+    public function index(): View
     {
         return view('shopping_lists.index');
     }
 
     /**
      * @param StoreShoppingListRequest $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      *
      * Use observer to set team_id
      */
-    public function store(StoreShoppingListRequest $request)
+    public function store(StoreShoppingListRequest $request): RedirectResponse
     {
         $id = ShoppingList::create($request->validated());
 
@@ -35,9 +36,9 @@ class ShoppingListController extends Controller
 
     /**
      * @param $id
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @return View
      */
-    public function show($id)
+    public function show($id): View
     {
         $shoppingList = ShoppingList::with('positions')
             ->where('team_id', auth()->user()->currentTeam->id)->with('positions')->findOrFail($id);
@@ -49,14 +50,23 @@ class ShoppingListController extends Controller
         return view('shopping_lists.show', compact('shoppingList', 'productCategories'));
     }
 
-    public function edit(ShoppingList $shoppingList)
+    /**
+     * @param ShoppingList $shoppingList
+     * @return View
+     */
+    public function edit(ShoppingList $shoppingList): View
     {
         ShoppingList::check_permission($shoppingList);
 
         return view('shopping_lists.edit', compact('shoppingList'));
     }
 
-    public function update(ShoppingList $shoppingList, StoreShoppingListRequest $request)
+    /**
+     * @param ShoppingList $shoppingList
+     * @param StoreShoppingListRequest $request
+     * @return RedirectResponse
+     */
+    public function update(ShoppingList $shoppingList, StoreShoppingListRequest $request): RedirectResponse
     {
         ShoppingList::check_permission($shoppingList);
 
@@ -65,7 +75,11 @@ class ShoppingListController extends Controller
         return back()->with('message', __('custom.global.messages.successfully_save'));
     }
 
-    public function destroy(ShoppingList $shoppingList)
+    /**
+     * @param ShoppingList $shoppingList
+     * @return RedirectResponse
+     */
+    public function destroy(ShoppingList $shoppingList): RedirectResponse
     {
         //TODO:: dodać usuwanie pozycji razem z lista
 
@@ -76,7 +90,11 @@ class ShoppingListController extends Controller
         return back()->with('message', __('custom.global.messages.successfully_archived'));
     }
 
-    public function getArchivedLists()
+    /**
+     * Get archived lists - paginate by 6
+     * @return View
+     */
+    public function getArchivedLists(): View
     {
         $archivedLists = ShoppingList::with('positions')
             ->where('team_id', auth()->user()->currentTeam->id)
@@ -85,7 +103,12 @@ class ShoppingListController extends Controller
         return view('shopping_lists.archivedLists', compact('archivedLists'));
     }
 
-    public function editArchivedLists($id)
+    /**
+     * Show form to change shopping date in restored list
+     * @param $id
+     * @return View
+     */
+    public function editArchivedLists($id): View
     {
         $shoppingList = ShoppingList::withTrashed()->findOrFail($id);
 
@@ -94,7 +117,12 @@ class ShoppingListController extends Controller
         return view('shopping_lists.restore', compact('shoppingList'));
     }
 
-    public function restoreShoppingList(Request $request, $id)
+    /**
+     * @param Request $request
+     * @param $id
+     * @return RedirectResponse
+     */
+    public function restoreShoppingList(Request $request, $id): RedirectResponse
     {
         $shoppingList = ShoppingList::withTrashed()->findOrFail($id);
 
@@ -111,7 +139,7 @@ class ShoppingListController extends Controller
      * @param $id
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function permanentlyDestroy($id)
+    public function permanentlyDestroy($id): RedirectResponse
     {
         $shoppingList = ShoppingList::withTrashed()->findOrFail($id)->forceDelete();
 

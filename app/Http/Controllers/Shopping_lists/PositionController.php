@@ -93,7 +93,7 @@ class PositionController extends Controller
         Position::check_permission($position);
 
         foreach ($position->shoppingList->weeklyShoppingList->positions as $toBeDone){
-            if($position->name == $toBeDone->name) {
+            if($position->name == $toBeDone->name && $position->type == $toBeDone->type) {
                 $toBeDone->update(['is_done' => true]);
             }
         }
@@ -105,7 +105,7 @@ class PositionController extends Controller
         Position::check_permission($position);
 
         foreach ($position->shoppingList->weeklyShoppingList->positions as $toBeUndone) {
-            if($position->name == $toBeUndone->name) {
+            if($position->name == $toBeUndone->name && $position->type == $toBeUndone->type) {
                 $toBeUndone->update(['is_done' => false]);
             }
         }

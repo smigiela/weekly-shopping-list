@@ -43,7 +43,6 @@ class WeeklyShoppingListController extends Controller
         return view('shopping_lists.createWeeklyShoppingList');
     }
 
-
     /**
      * @param WeeklyListStoreRequest $request
      * @return \Illuminate\Http\RedirectResponse
