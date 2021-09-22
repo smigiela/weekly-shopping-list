@@ -61,7 +61,6 @@
                                class="text-lg block font-semibold py-2 px-6
                             text-white hover:text-green-100 bg-blue-400 rounded-lg
                             shadow hover:shadow-md transition duration-300">{{__('custom.shopping_lists.weekly_list.show.generate_pdf')}}</a>
-</form>
                         </div>
                     </div>
                 </div>
