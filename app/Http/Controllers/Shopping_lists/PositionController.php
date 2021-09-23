@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Shopping_lists;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePositionRequest;
-use App\Models\Recipes\Product;
+use App\Models\Product;
 use App\Models\Shopping_lists\Position;
 use App\Models\Shopping_lists\ShoppingList;
 
@@ -23,7 +23,21 @@ class PositionController extends Controller
 
         $productCategoryId = Product::where('name', $request->name)->pluck('product_category_id')->first();
 
-        Position::create($request->validated() + ['shopping_list_id' => $shoppingList->id, 'product_category_id' => $productCategoryId]);
+        $existPosition = Position::where([
+            'name' => $request->name,
+            'shopping_list_id' => $shoppingList->id,
+            'type' => $request->type,
+            'is_done' => null])
+            ->first();
+
+        if ($existPosition) {
+            $existPosition->update(['amount' => ($existPosition->amount + $request->amount)]);
+        } else {
+            Position::create($request->validated() + [
+                'shopping_list_id' => $shoppingList->id,
+                'product_category_id' => $productCategoryId
+                ]);
+        }
 
         return back(201)->with('message', __('custom.global.messages.successfully_save'));
     }
@@ -87,6 +101,8 @@ class PositionController extends Controller
 
         return back()->with('message', __('custom.global.messages.successfully_restore'));
     }
+
+    //TODO: Wynieść te dwie funkcje do weekly shopping list kontrolera.
 
     public function mark_as_done(Position $position)
     {
