@@ -86,42 +86,55 @@
                         @method('POST')
                         @csrf
                         <div class="flex col-span-2 sm:col-span-2">
-                            <div class="w-1/2">
+                            <div class="w-1/4">
                                 <label for="name" class="block text-sm font-medium text-gray-700">
-                                    {{__('custom.shopping_lists.show.add_position')}}
+                                    {{__('custom.shopping_lists.show.choose_product')}}
                                 </label>
                                 <div class="mt-1 flex rounded-md shadow-sm">
                                     <select name="name" id="name" class="form-select focus:ring-indigo-500 focus:border-indigo-500 flex-1--}}
                                           block w-full rounded-none rounded-r-md sm:text-sm border-gray-300">
-                                        <option class="font-bold" disabled>{{__('custom.shopping_lists.show.favourites')}}</option>
-                                        @if((auth()->user()->favourites)->count() == 0)
-                                            <option class="text-red-500" disabled>--{{__('custom.shopping_lists.show.add_fav_in_settings')}}</option>
-                                        @endif
-                                        @foreach (auth()->user()->favourites as $product)
-                                            <option value="{{$product->name}}">
-                                                ⭐{{$product->name}}
-                                            </option>
-                                        @endforeach
-                                        @foreach($productCategories as $category)
-                                            <option class="font-bold" disabled>{{$category->name}}</option>
-                                            @foreach($category->products as $product)
-                                                <option value="{{$product->name}}">--{{$product->name}}</option>
+                                        <option class="font-bold" selected disabled>{{__('custom.shopping_lists.show.favourites')}}</option>
+                                            @if((auth()->user()->favourites)->count() == 0)
+                                                <option class="text-red-500" disabled>--{{__('custom.shopping_lists.show.add_fav_in_settings')}}</option>
+                                            @endif
+                                            @foreach (auth()->user()->favourites as $product)
+                                                <option value="{{$product->name}}">
+                                                    ⭐{{$product->name}}
+                                                </option>
                                             @endforeach
-                                        @endforeach
+                                            @foreach($productCategories as $category)
+                                                <option class="font-bold" disabled>{{$category->name}}</option>
+                                                @foreach($category->products as $product)
+                                                    <option value="{{$product->name}}">--{{$product->name}}</option>
+                                                @endforeach
+                                            @endforeach
                                     </select>
                                 </div>
                             </div>
-                            <div class="ml-2 w-1/4">
-                                <label for="amount" class="block text-sm font-medium text-gray-700">
-                                    {{__('custom.shopping_lists.show.amount')}}
-                                </label>
-                                <div class="mt-1 flex rounded-md shadow-sm">
-                                    <input type="number" name="amount" id="amount"
-                                           value="{{old('amount')}}"
-                                           class="@error('amount') border-red-500 @enderror
-                                               focus:ring-indigo-500 focus:border-indigo-500 flex-1
-                                               block w-full rounded-none rounded-r-md sm:text-sm border-gray-300">
 
+                            <div class="ml-2 w-1/4">
+                                <x-jet-label for="amount" class="block text-sm font-medium text-gray-700">
+                                    {{__('custom.shopping_lists.show.or_write_name')}}
+                                </x-jet-label>
+                                <div class="mt-1 flex rounded-md shadow-sm">
+                                    <x-jet-input type="text" name="name" id="name"
+                                           value="{{old('name')}}"
+                                           class="focus:ring-indigo-500 focus:border-indigo-500 flex-1
+                                               block w-full rounded-none rounded-r-md sm:text-sm border-gray-300">
+                                    </x-jet-input>
+                                </div>
+                            </div>
+
+                            <div class="ml-2 w-1/4">
+                                <x-jet-label for="amount" class="block text-sm font-medium text-gray-700">
+                                    {{__('custom.shopping_lists.show.amount')}}
+                                </x-jet-label>
+                                <div class="mt-1 flex rounded-md shadow-sm">
+                                    <x-jet-input type="number" name="amount" id="amount"
+                                           value="{{old('amount')}}"
+                                           class="focus:ring-indigo-500 focus:border-indigo-500 flex-1
+                                               block w-full rounded-none rounded-r-md sm:text-sm border-gray-300">
+                                    </x-jet-input>
                                 </div>
                             </div>
                             <div class="ml-2 w-1/4">
