@@ -24,5 +24,6 @@ class ProductCategorySeeder extends Seeder
         ProductCategory::insert(['name' => 'Napoje', 'index' => 8]);
         ProductCategory::insert(['name' => 'Higiena osobista', 'index' => 9]);
         ProductCategory::insert(['name' => 'Dom', 'index' => 10]);
+        ProductCategory::insert(['name' => 'Brak kategorii', 'index' => 11]);
     }
 }

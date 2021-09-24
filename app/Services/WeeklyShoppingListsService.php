@@ -35,7 +35,7 @@ class WeeklyShoppingListsService
     public function getWeeklyPositions()
     {
         $this->getWeeklyList()->load(['positions' => function($query) use (&$weeklyPositions){
-            $weeklyPositions = $query->groupBy('name', 'type')
+            $weeklyPositions = $query->orderBy('product_category_id')->groupBy('name', 'type')
                 ->selectRaw('positions.id,name,type, sum(amount) as sum, is_done')
                 ->get();
         }]);

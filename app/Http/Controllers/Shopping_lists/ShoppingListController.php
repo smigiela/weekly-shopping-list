@@ -41,7 +41,15 @@ class ShoppingListController extends Controller
     public function show($id): View
     {
         $shoppingList = ShoppingList::with('positions')
-            ->where('team_id', auth()->user()->currentTeam->id)->with('positions')->findOrFail($id);
+            ->where('team_id', auth()->user()->currentTeam->id)->findOrFail($id);
+
+        $shoppingList->load(['positions' => function($query) {
+            $query->orderBy('product_category_id');
+        }]);
+
+        foreach ($shoppingList->positions as $position){
+            echo($position->product_category_id);
+        }
 
         $productCategories = ProductCategory::with('products')->get();
 

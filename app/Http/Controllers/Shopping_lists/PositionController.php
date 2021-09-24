@@ -19,9 +19,14 @@ class PositionController extends Controller
      */
     public function store(StorePositionRequest $request, ShoppingList $shoppingList)
     {
+//        dd($request->validated());
         ShoppingList::check_permission($shoppingList);
 
-        $productCategoryId = Product::where('name', $request->name)->pluck('product_category_id')->first();
+        $productCategoryId = Product::where('name', $request->name1)->pluck('product_category_id')->first();
+
+        if (! $productCategoryId){
+            $productCategoryId = 11;
+        }
 
         $existPosition = Position::where([
             'name' => $request->name,
@@ -33,7 +38,10 @@ class PositionController extends Controller
         if ($existPosition) {
             $existPosition->update(['amount' => ($existPosition->amount + $request->amount)]);
         } else {
-            Position::create($request->validated() + [
+            Position::create([
+                'name' => $request->validated()['name1'] ?? $request->validated()['name2'],
+                'amount' => $request->validated()['amount'],
+                'type' => $request->validated()['type'],
                 'shopping_list_id' => $shoppingList->id,
                 'product_category_id' => $productCategoryId
                 ]);

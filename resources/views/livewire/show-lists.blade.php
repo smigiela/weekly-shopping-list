@@ -8,7 +8,7 @@
                         {{__('custom.shopping_lists.global.shopping_date')}}: {{ $shoppingList->shopping_date }}</p>
                     <div class="mt-3 space-x-4 p-1">
                         <ul>
-                            @forelse($shoppingList->positions->sortBy(['product_category_id', 'is_done']) as $position)
+                            @forelse($shoppingList->positions->sortBy('is_done') as $position)
                                 <li class="{{ ($position->is_done) ? 'position_is_done' : '' }}">
                                    <div class="inline-flex">
                                        @if(!$position->is_done)

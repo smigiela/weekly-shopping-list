@@ -24,7 +24,8 @@ class StorePositionRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required', 'string', 'between:2,50'],
+            'name1' => ['nullable', 'string', 'between:2,50'],
+            'name2' => ['nullable', 'string', 'between:2,50'],
             'amount' => ['required', 'integer', 'between:0,10000'],
             'type' => ['required', 'in:weight,quantity,volume']
         ];
