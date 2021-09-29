@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FavouriteController;
 use App\Http\Controllers\LocalizationController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\Recipes\RecipeController;
@@ -45,10 +46,10 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
   Route::resource('positions', PositionController::class, ['except' => 'store']);
 
   Route::get('/products', [ProductController::class, 'index'])->name('products.index');
-  Route::get('products/{product}/fav', [ProductController::class, 'addProductToFavourites'])
+  Route::get('products/{product}/fav', [FavouriteController::class, 'addProductToFavourites'])
       ->name('products.addToFav');
-    Route::get('products/{product}/unfav', [ProductController::class, 'removeProductFromFavourites'])
-        ->name('products.removeFromFav');
+  Route::get('products/{product}/unfav', [FavouriteController::class, 'removeProductFromFavourites'])
+      ->name('products.removeFromFav');
 
   Route::view('recipes', 'recipes.index')->name('recipes.index');
   Route::resource('recipes', RecipeController::class);
