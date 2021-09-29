@@ -28,7 +28,6 @@
         </div>
     </div>
     <div class="m-5">
-
         <form action="{{route('shopping_lists.store')}}" method="POST">
             @method('POST')
             @csrf
