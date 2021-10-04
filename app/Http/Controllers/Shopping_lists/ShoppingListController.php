@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Shopping_lists;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreShoppingListRequest;
 use App\Models\ProductCategory;
+use App\Models\Shopping_lists\Position;
 use App\Models\Shopping_lists\ShoppingList;
+use App\Services\WeeklyShoppingListsService;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -13,11 +15,30 @@ use Illuminate\Http\Request;
 class ShoppingListController extends Controller
 {
     /**
+     * @var WeeklyShoppingListsService
+     */
+    private $service;
+
+    public function __construct(WeeklyShoppingListsService $service)
+    {
+        $this->service = $service;
+    }
+
+    /**
      * Get lists for the team - implement in livewire component
      */
     public function index(): View
     {
-        return view('shopping_lists.index');
+        $weeklyShoppingList = $this->service->getWeeklyList();
+
+        if (! $weeklyShoppingList){
+           $weeklyPositions = [];
+        } else {
+            $weeklyPositions = $this->service->getWeeklyPositions();
+        }
+
+
+        return view('shopping_lists.index', compact('weeklyPositions', 'weeklyShoppingList'));
     }
 
     /**
@@ -47,15 +68,9 @@ class ShoppingListController extends Controller
             $query->orderBy('product_category_id');
         }]);
 
-        foreach ($shoppingList->positions as $position){
-            echo($position->product_category_id);
-        }
-
-        $productCategories = ProductCategory::with('products')->get();
-
         ShoppingList::check_permission($shoppingList);
 
-        return view('shopping_lists.show', compact('shoppingList', 'productCategories'));
+        return view('shopping_lists.show', compact('shoppingList'));
     }
 
     /**
@@ -66,7 +81,9 @@ class ShoppingListController extends Controller
     {
         ShoppingList::check_permission($shoppingList);
 
-        return view('shopping_lists.edit', compact('shoppingList'));
+        $productCategories = ProductCategory::with('products')->get();
+
+        return view('shopping_lists.edit', compact('shoppingList', 'productCategories'));
     }
 
     /**
@@ -154,5 +171,30 @@ class ShoppingListController extends Controller
         ShoppingList::check_permission($shoppingList);
 
         return back()->with('message', __('custom.global.messages.successfully_delete'));
+    }
+
+    /**
+     * @param Position $position
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function mark_as_done_position(Position $position)
+    {
+        Position::check_permission($position);
+
+        $position->update(['is_done' => true]);
+        return back();
+    }
+
+    /**
+     * @param Position $position
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function unmark_as_done_position(Position $position)
+    {
+        Position::check_permission($position);
+
+        $position->update(['is_done' => false]);
+
+        return back();
     }
 }

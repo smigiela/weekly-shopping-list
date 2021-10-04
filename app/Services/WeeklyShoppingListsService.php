@@ -8,26 +8,26 @@ use App\Models\User;
 
 class WeeklyShoppingListsService
 {
-    /**
-     * Check weekly shopping list exist by team_id and show (or no) menu item
-     * @param $team_id
-     * @return bool|void
-     */
-    public static function checkIfExist($team_id): bool
-    {
-        $weeklyShoppingList = WeeklyShoppingList::where('team_id', $team_id)->first();
-        if (! $weeklyShoppingList){
-            return false;
-        }
-        if ($weeklyShoppingList) {
-            return true;
-        }
-    }
+//    /**
+//     * Check weekly shopping list exist by team_id and show (or no) menu item
+//     * @param $team_id
+//     * @return bool|void
+//     */
+//    public static function checkIfExist($team_id): bool
+//    {
+//        $weeklyShoppingList = WeeklyShoppingList::where('team_id', $team_id)->first();
+//        if (! $weeklyShoppingList){
+//            return false;
+//        }
+//        if ($weeklyShoppingList) {
+//            return true;
+//        }
+//    }
 
     /**
      * @return mixed
      */
-    public function getWeeklyList(): WeeklyShoppingList
+    public function getWeeklyList()
     {
         return WeeklyShoppingList::where('team_id', auth()->user()->currentTeam->id)->first();
     }

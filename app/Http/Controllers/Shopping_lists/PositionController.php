@@ -109,31 +109,4 @@ class PositionController extends Controller
 
         return back()->with('message', __('custom.global.messages.successfully_restore'));
     }
-
-    //TODO: Wynieść te dwie funkcje do weekly shopping list kontrolera.
-
-    public function mark_as_done(Position $position)
-    {
-        Position::check_permission($position);
-
-        foreach ($position->shoppingList->weeklyShoppingList->positions as $toBeDone){
-            if($position->name == $toBeDone->name && $position->type == $toBeDone->type) {
-                $toBeDone->update(['is_done' => true]);
-            }
-        }
-        return back();
-    }
-
-    public function unmark_as_done(Position $position)
-    {
-        Position::check_permission($position);
-
-        foreach ($position->shoppingList->weeklyShoppingList->positions as $toBeUndone) {
-            if($position->name == $toBeUndone->name && $position->type == $toBeUndone->type) {
-                $toBeUndone->update(['is_done' => false]);
-            }
-        }
-
-        return back();
-    }
 }

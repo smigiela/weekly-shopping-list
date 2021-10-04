@@ -4,9 +4,22 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 
 class FavouriteController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     *
+     * @return View
+     */
+    public function index(): View
+    {
+        $products = Product::all();
+
+        return view('products.favourites.index', compact('products'));
+    }
+
     /**
      * @param Product $product
      * @return RedirectResponse

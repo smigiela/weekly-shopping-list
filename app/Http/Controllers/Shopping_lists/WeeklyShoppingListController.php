@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Shopping_lists;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\WeeklyListStoreRequest;
+use App\Models\Shopping_lists\Position;
 use App\Models\Shopping_lists\WeeklyShoppingList;
 use App\Services\WeeklyShoppingListsService;
 use Barryvdh\DomPDF\Facade as PDF;
@@ -56,6 +57,10 @@ class WeeklyShoppingListController extends Controller
         return redirect()->route('weekly_lists.index')->with('message', __('custom.global.messages.successfully_save'));
     }
 
+    /**
+     * @param WeeklyShoppingList $weeklyShoppingList
+     * @return mixed
+     */
     public function downloadPdf(WeeklyShoppingList $weeklyShoppingList)
     {
         $weeklyPositions = $this->service->getWeeklyPositions();
@@ -64,5 +69,38 @@ class WeeklyShoppingListController extends Controller
         $pdf = PDF::loadView('pdf.weeklyList');
 
         return $pdf->setPaper('a4')->stream();
+    }
+
+    /**
+     * @param Position $position
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function mark_as_done_weekly_positions(Position $position)
+    {
+        Position::check_permission($position);
+
+        foreach ($position->shoppingList->weeklyShoppingList->positions as $toBeDone){
+            if($position->name == $toBeDone->name && $position->type == $toBeDone->type) {
+                $toBeDone->update(['is_done' => true]);
+            }
+        }
+        return back();
+    }
+
+    /**
+     * @param Position $position
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function unmark_as_done_weekly_positions(Position $position)
+    {
+        Position::check_permission($position);
+
+        foreach ($position->shoppingList->weeklyShoppingList->positions as $toBeUndone) {
+            if($position->name == $toBeUndone->name && $position->type == $toBeUndone->type) {
+                $toBeUndone->update(['is_done' => false]);
+            }
+        }
+
+        return back();
     }
 }

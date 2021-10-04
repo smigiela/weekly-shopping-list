@@ -24,22 +24,6 @@
                     </x-jet-nav-link>
                 </div>
 
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{ route('weekly_lists.create') }}"
-                                    :active="request()->routeIs('weekly_lists.create')">
-                        {{ __('custom.nav.create_weekly_list') }}
-                    </x-jet-nav-link>
-                </div>
-
-                @if(\App\Services\WeeklyShoppingListsService::checkIfExist(auth()->user()->currentTeam->id))
-                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                        <x-jet-nav-link href="{{ route('weekly_lists.index') }}"
-                                        :active="request()->routeIs('weekly_lists.index')">
-                            {{ __('custom.nav.weekly_list') }}
-                        </x-jet-nav-link>
-                    </div>
-                @endif
-
                 {{--                @if(auth()->user()->subscribed('premium'))--}}
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="{{ route('recipes.index') }}" :active="request()->routeIs('recipes.index')">
@@ -210,21 +194,6 @@
                 {{ __('custom.nav.shopping_lists') }}
             </x-jet-responsive-nav-link>
         </div>
-
-        <div class="pt-2 pb-3 space-y-1">
-            <x-jet-responsive-nav-link href="{{ route('weekly_lists.create') }}"
-                                       :active="request()->routeIs('weekly_lists.create')">
-                {{ __('custom.nav.create_weekly_list') }}
-            </x-jet-responsive-nav-link>
-        </div>
-
-        <div class="pt-2 pb-3 space-y-1">
-            <x-jet-responsive-nav-link href="{{ route('weekly_lists.index') }}"
-                                       :active="request()->routeIs('weekly_lists.index')">
-                {{ __('custom.nav.weekly_list') }}
-            </x-jet-responsive-nav-link>
-        </div>
-
         @if(auth()->user()->subscribed('premium'))
             <div class="pt-2 pb-3 space-y-1">
                 <x-jet-responsive-nav-link href="{{ route('recipes.index') }}"
@@ -232,7 +201,7 @@
                     {{ __('custom.nav.recipes') }}
                 </x-jet-responsive-nav-link>
             </div>
-    @endif
+        @endif
 
     <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200">

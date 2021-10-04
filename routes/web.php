@@ -11,51 +11,59 @@ use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\Shopping_lists\WeeklyShoppingListController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('welcome');
+// home page
+Route::get('/', fn() => view('welcome'))->name('welcome');
 
 Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
 
-  Route::get('shopping_lists/archived/{shopping_list}', [ShoppingListController::class, 'editArchivedLists'])
-      ->name('shopping_lists.editArchivedList');
-  Route::put('shopping_lists/{shopping_list}/restore', [ShoppingListController::class, 'restoreShoppingList'])
-      ->name('shopping_lists.restore');
-  Route::get('shopping_lists/archived', [ShoppingListController::class, 'getArchivedLists'])
-      ->name('shopping_lists.getArchived');
-  Route::delete('shopping_lists/archived/{id}', [ShoppingListController::class, 'permanentlyDestroy'])
-      ->name('shopping_lists.permanentlyDestroy');
-  Route::resource('shopping_lists', ShoppingListController::class);
+    // shopping lists
+    Route::get('shopping_lists/archived/{shopping_list}', [ShoppingListController::class, 'editArchivedLists'])
+        ->name('shopping_lists.editArchivedList');
+    Route::put('shopping_lists/{shopping_list}/restore', [ShoppingListController::class, 'restoreShoppingList'])
+        ->name('shopping_lists.restore');
+    Route::get('shopping_lists/archived', [ShoppingListController::class, 'getArchivedLists'])
+        ->name('shopping_lists.getArchived');
+    Route::delete('shopping_lists/archived/{id}', [ShoppingListController::class, 'permanentlyDestroy'])
+        ->name('shopping_lists.permanentlyDestroy');
+    Route::get('shopping_lists/complete/{position}', [ShoppingListController::class, 'mark_as_done_position'])
+        ->name('shopping_lists.markAsDonePosition');
+    Route::get('shopping_lists/unmark_as_done/{position}', [ShoppingListController::class, 'unmark_as_done_position'])
+        ->name('shopping_lists.unmarkAsDonePosition');
+    Route::resource('shopping_lists', ShoppingListController::class);
 
-  Route::get('weekly_shopping_lists', [WeeklyShoppingListController::class, 'index'])
-      ->name('weekly_lists.index');
-  Route::get('weekly_shopping_lists/create', [WeeklyShoppingListController::class, 'create'])
-      ->name('weekly_lists.create');
-  Route::post('weekly_shopping_lists', [WeeklyShoppingListController::class, 'store'])
-      ->name('weekly_lists.store');
-  Route::get('weekly_shopping_lists/{weeklyShoppingList}/downloadpdf', [WeeklyShoppingListController::class, 'downloadPdf'])
-      ->name('weekly_lists.downloadpdf');
+    // weekly list
+    Route::get('weekly_shopping_lists', [WeeklyShoppingListController::class, 'index'])
+        ->name('weekly_lists.index');
+    Route::get('weekly_shopping_lists/create', [WeeklyShoppingListController::class, 'create'])
+        ->name('weekly_lists.create');
+    Route::post('weekly_shopping_lists', [WeeklyShoppingListController::class, 'store'])
+        ->name('weekly_lists.store');
+    Route::get('weekly_shopping_lists/{weeklyShoppingList}/downloadpdf', [WeeklyShoppingListController::class, 'downloadPdf'])
+        ->name('weekly_lists.downloadpdf');
+    Route::get('weekly_shopping_lists/complete/{position}', [WeeklyShoppingListController::class, 'mark_as_done_weekly_positions'])
+        ->name('weekly_lists.markAsDoneWeeklyPositions');
+    Route::get('weekly_shopping_lists/unmark_as_done/{position}', [WeeklyShoppingListController::class, 'unmark_as_done_weekly_positions'])
+        ->name('weekly_lists.unmarkAsDoneWeklyPositions');
 
-  Route::get('positions/restore/{position_id}', [PositionController::class, 'restore'])
-      ->name('positions.restore');
-  Route::get('positions/complete/{position}', [PositionController::class  , 'mark_as_done'])
-      ->name('positions.markAsDone');
-  Route::get('positions/unmark_as_done/{position}', [PositionController::class, 'unmark_as_done'])
-      ->name('positions.unmarkAsDone');
-  Route::post('positions/{shoppingList}', [PositionController::class, 'store'])->name('positions.store');
-  Route::resource('positions', PositionController::class, ['except' => 'store']);
+    // positions
+    Route::get('positions/restore/{position_id}', [PositionController::class, 'restore'])
+        ->name('positions.restore');
+    Route::post('positions/{shoppingList}', [PositionController::class, 'store'])->name('positions.store');
+    Route::resource('positions', PositionController::class, ['except' => 'store']);
 
-  Route::get('/products', [ProductController::class, 'index'])->name('products.index');
-  Route::get('products/{product}/fav', [FavouriteController::class, 'addProductToFavourites'])
-      ->name('products.addToFav');
-  Route::get('products/{product}/unfav', [FavouriteController::class, 'removeProductFromFavourites'])
-      ->name('products.removeFromFav');
+    // favourites products
+    Route::get('/products', [FavouriteController::class, 'index'])->name('products.index');
+    Route::get('products/{product}/fav', [FavouriteController::class, 'addProductToFavourites'])
+        ->name('products.addToFav');
+    Route::get('products/{product}/unfav', [FavouriteController::class, 'removeProductFromFavourites'])
+        ->name('products.removeFromFav');
 
-  Route::view('recipes', 'recipes.index')->name('recipes.index');
-  Route::resource('recipes', RecipeController::class);
+    // recipes
+    Route::view('recipes', 'recipes.index')->name('recipes.index');
+    Route::resource('recipes', RecipeController::class);
 
-  Route::post('recipe_items/{recipe}', [RecipeItemController::class, 'store'])->name('recipe_items.store');
-  Route::resource('recipes_items', RecipeItemController::class, ['except' => 'store']);
+    Route::post('recipe_items/{recipe}', [RecipeItemController::class, 'store'])->name('recipe_items.store');
+    Route::resource('recipes_items', RecipeItemController::class, ['except' => 'store']);
 });
 
 Route::get('lang/{locale}', [LocalizationController::class, 'index'])->name('settings.changeLocale');

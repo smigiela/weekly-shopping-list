@@ -3,6 +3,8 @@
 namespace App\Http\Livewire;
 
 use App\Models\Shopping_lists\ShoppingList;
+use App\Models\Shopping_lists\WeeklyShoppingList;
+use App\Services\WeeklyShoppingListsService;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -16,7 +18,7 @@ class ShowLists extends Component
             'shoppingLists' => ShoppingList::with('positions')
                 ->where('team_id', auth()->user()->currentTeam->id)
                 ->orderBy('shopping_date')
-                ->paginate(6)
+                ->paginate(3)
         ]);
     }
 }
