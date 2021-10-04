@@ -16,6 +16,9 @@ Route::get('/', fn() => view('welcome'))->name('welcome');
 
 Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
 
+    // products
+    Route::get('/ajax-autocomplete-search', [ProductController::class, 'selectSearch']);
+
     // shopping lists
     Route::get('shopping_lists/archived/{shopping_list}', [ShoppingListController::class, 'editArchivedLists'])
         ->name('shopping_lists.editArchivedList');

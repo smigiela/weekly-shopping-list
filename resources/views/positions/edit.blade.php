@@ -18,10 +18,10 @@
                                     {{__('custom.positions.edit.product')}}
                                 </label>
                                 <div class="mt-1 flex rounded-md shadow-sm">
-                                    <input type="text" name="name" id="name"
-                                           value="{{old('name', $position->name)}}"
+                                    <input type="text" name="name" id="name" disabled
+                                           value="{{$position->name}}"
                                            class="@error('name') border-red-500 @enderror
-                                               focus:ring-indigo-500 focus:border-indigo-500 flex-1
+                                               disabled:opacity-25 focus:ring-indigo-500 focus:border-indigo-500 flex-1
                                                block w-full rounded-none rounded-r-md sm:text-sm border-gray-300">
 
                                 </div>

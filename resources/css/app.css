@@ -6,3 +6,8 @@
     text-decoration: line-through;
     color: green;
 }
+
+.livesearch {
+    @apply w-full h-10 pl-3 pr-6 text-base placeholder-gray-600 border
+    rounded-lg appearance-none focus:shadow-outline;
+}

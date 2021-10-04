@@ -85,4 +85,18 @@ class ProductController extends Controller
     {
         //
     }
+
+
+    public function selectSearch(Request $request)
+    {
+        $products = [];
+
+        if($request->has('q')){
+            $search = $request->q;
+            $products = Product::select("id", "name")
+                ->where('name', 'LIKE', "%$search%")
+                ->get();
+        }
+        return response()->json($products);
+    }
 }

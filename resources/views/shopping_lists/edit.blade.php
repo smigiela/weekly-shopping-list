@@ -13,39 +13,39 @@
                     <form action="{{route('shopping_lists.update', $shoppingList)}}" method="POST">
                         @method('PUT')
                         @csrf
-                                <div class="grid grid-cols-2 gap-6">
-                                    <div class="col-span-2 sm:col-span-2">
-                                        <label for="title" class="block text-sm font-medium text-gray-700">
-                                            {{__('custom.shopping_lists.create.title')}}
-                                        </label>
-                                        <div class="mt-1 flex rounded-md shadow-sm">
-                                            <input type="text" name="title" id="title"
-                                                   value="{{$shoppingList->title}}"
-                                                   class="@error('title') border-red-500 @enderror
-                                                       focus:ring-indigo-500 focus:border-indigo-500 flex-1
-                                                       block w-full rounded-none rounded-r-md sm:text-sm border-gray-300">
+                        <div class="grid grid-cols-2 gap-6">
+                            <div class="col-span-2 sm:col-span-2">
+                                <label for="title" class="block text-sm font-medium text-gray-700">
+                                    {{__('custom.shopping_lists.create.title')}}
+                                </label>
+                                <div class="mt-1 flex rounded-md shadow-sm">
+                                    <input type="text" name="title" id="title"
+                                           value="{{$shoppingList->title}}"
+                                           class="@error('title') border-red-500 @enderror
+                                               focus:ring-indigo-500 focus:border-indigo-500 flex-1
+                                               block w-full rounded-none rounded-r-md sm:text-sm border-gray-300">
 
-                                        </div>
-                                    </div>
                                 </div>
-                                <div>
-                                    <label for="shopping_date" class="block text-sm font-medium text-gray-700">
-                                        {{__('custom.shopping_lists.create.shopping_date')}}
-                                    </label>
-                                    <div class="mt-1">
-                                        <input type="date" id="shopping_date" name="shopping_date"
-                                               value="{{$shoppingList->shopping_date}}"
-                                               class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
-                                               placeholder="you@example.com">
-                                    </div>
-                                </div>
-                                <x-jet-validation-errors></x-jet-validation-errors>
-                            <div class="px-4 py-3 text-right sm:px-6">
-                                <button type="submit"
-                                        class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                    {{__('custom.global.save')}}
-                                </button>
                             </div>
+                        </div>
+                        <div>
+                            <label for="shopping_date" class="block text-sm font-medium text-gray-700">
+                                {{__('custom.shopping_lists.create.shopping_date')}}
+                            </label>
+                            <div class="mt-1">
+                                <input type="date" id="shopping_date" name="shopping_date"
+                                       value="{{$shoppingList->shopping_date}}"
+                                       class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
+                                       placeholder="you@example.com">
+                            </div>
+                        </div>
+                        <x-jet-validation-errors></x-jet-validation-errors>
+                        <div class="px-4 py-3 text-right sm:px-6">
+                            <button type="submit"
+                                    class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                {{__('custom.global.save')}}
+                            </button>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -63,55 +63,24 @@
                         @method('POST')
                         @csrf
                         <div class="flex col-span-2 sm:col-span-2">
-                            <div class="w-1/4">
+                            <div class="w-2/4">
                                 <x-jet-label for="name" class="block text-sm font-medium text-gray-700">
                                     {{__('custom.shopping_lists.show.choose_product')}}
                                 </x-jet-label>
                                 <div class="mt-1 flex rounded-md shadow-sm">
-                                    <select name="name1" class="form-select focus:ring-indigo-500 focus:border-indigo-500 flex-1--}}
-                                          block w-full rounded-none rounded-r-md sm:text-sm border-gray-300">
-                                        <option class="font-bold" selected disabled>{{__('custom.shopping_lists.show.favourites')}}</option>
-                                        @if((auth()->user()->favourites)->count() == 0)
-                                            <option class="text-red-500" disabled>--{{__('custom.shopping_lists.show.add_fav_in_settings')}}</option>
-                                        @endif
-                                        @foreach (auth()->user()->favourites as $product)
-                                            <option value="{{$product->name}}">
-                                                ⭐{{$product->name}}
-                                            </option>
-                                        @endforeach
-                                        @foreach($productCategories as $category)
-                                            <option class="font-bold" disabled>{{$category->name}}</option>
-                                            @foreach($category->products as $product)
-                                                <option value="{{$product->name}}">--{{$product->name}}</option>
-                                            @endforeach
-                                        @endforeach
-                                    </select>
+                                    <select class="livesearch w-full h-10 pl-3 pr-6 text-base placeholder-gray-600 border
+                                     rounded-lg appearance-none focus:shadow-outline" name="name"></select>
                                 </div>
                             </div>
 
                             <div class="ml-2 w-1/4">
-                                <x-jet-label for="name" class="block text-sm font-medium text-gray-700">
-                                    {{__('custom.shopping_lists.show.or_write_name')}}
-                                </x-jet-label>
-                                <div class="mt-1 flex rounded-md shadow-sm">
-                                    <x-jet-input type="text" name="name2"
-                                                 value="{{old('name')}}"
-                                                 class="focus:ring-indigo-500 focus:border-indigo-500 flex-1
-                                               block w-full rounded-none rounded-r-md sm:text-sm border-gray-300">
-                                    </x-jet-input>
-                                </div>
-                            </div>
-
-                            <div class="ml-2 w-1/4">
-                                <x-jet-label for="amount" class="block text-sm font-medium text-gray-700">
+                                <label for="amount" class="block text-sm font-medium text-gray-700">
                                     {{__('custom.shopping_lists.show.amount')}}
-                                </x-jet-label>
+                                </label>
                                 <div class="mt-1 flex rounded-md shadow-sm">
-                                    <x-jet-input type="number" name="amount" id="amount"
+                                    <input type="number" name="amount" id="amount"
                                                  value="{{old('amount')}}"
-                                                 class="focus:ring-indigo-500 focus:border-indigo-500 flex-1
-                                               block w-full rounded-none rounded-r-md sm:text-sm border-gray-300">
-                                    </x-jet-input>
+                                                 class="px-3 py-3 placeholder-gray-400 text-gray-600 relative bg-white bg-white rounded text-sm border border-gray-400 outline-none focus:outline-none focus:ring w-full">
                                 </div>
                             </div>
                             <div class="ml-2 w-1/4">
@@ -119,8 +88,7 @@
                                     {{__('custom.shopping_lists.show.type')}}
                                 </label>
                                 <div class="relative inline-block w-full text-gray-700">
-                                    <select id="type" name="type" class="w-full h-10 pl-3 pr-6 text-base placeholder-gray-600 border
-                                     rounded-lg appearance-none focus:shadow-outline
+                                    <select id="type" name="type" class="form-select block w-full mt-1
                                     @error('type') border-red-500 @enderror">
                                         <option disabled
                                                 selected>{{__('custom.shopping_lists.show.type_placeholder')}}</option>
@@ -128,7 +96,6 @@
                                         <option value="weight">{{__('custom.shopping_lists.global.g')}}</option>
                                         <option value="volume">{{__('custom.shopping_lists.global.ml')}}</option>
                                     </select>
-
                                 </div>
                             </div>
                         </div>
@@ -218,5 +185,33 @@
             </div>
         </div>
     </div>
+    @section('styles')
+        <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
 
+    @endsection
+    @section('scripts')
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+        <script type="text/javascript">
+            $('.livesearch').select2({
+                ajax: {
+                    url: '/ajax-autocomplete-search',
+                    dataType: 'json',
+                    delay: 250,
+                    processResults: function (data) {
+                        return {
+                            results: $.map(data, function (item) {
+                                return {
+                                    text: item.name,
+                                    id: item.name
+                                }
+                            })
+                        };
+                    },
+                    cache: true
+                }
+            });
+        </script>
+    @endsection
 </x-app-layout>

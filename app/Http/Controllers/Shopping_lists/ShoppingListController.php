@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Shopping_lists;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreShoppingListRequest;
+use App\Models\Product;
 use App\Models\ProductCategory;
 use App\Models\Shopping_lists\Position;
 use App\Models\Shopping_lists\ShoppingList;
@@ -51,7 +52,7 @@ class ShoppingListController extends Controller
     {
         $id = ShoppingList::create($request->validated());
 
-        return redirect()->route('shopping_lists.show', $id)
+        return redirect()->route('shopping_lists.edit', $id)
             ->with('message', __('custom.global.messages.successfully_save'));
     }
 
@@ -81,9 +82,7 @@ class ShoppingListController extends Controller
     {
         ShoppingList::check_permission($shoppingList);
 
-        $productCategories = ProductCategory::with('products')->get();
-
-        return view('shopping_lists.edit', compact('shoppingList', 'productCategories'));
+        return view('shopping_lists.edit', compact('shoppingList'));
     }
 
     /**
