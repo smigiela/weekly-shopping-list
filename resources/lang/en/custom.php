@@ -3,15 +3,24 @@
 return [
     'global' => [
         'nothing_to_show' => 'Nothing to show',
+        'back' => 'Back',
         'edit' => 'Edit',
         'choose' => 'Choose',
         'save' => 'Save',
+        'archive' => 'Archive',
+        'permanently_delete' => 'Permanently delete!',
+        'there' => 'THERE',
         'messages' => [
             'successfully_save' => 'Successfully saved',
             'successfully_delete' => 'Successfully deleted',
             'successfully_restore' => 'Successfully restored',
+            'successfully_archived' => 'Archived successfully!',
+            'successfully_purchase' => 'Payment successfully!',
+            'successfully_favourite' => 'Added to favourites!',
+            'successfully_remove_favourite' => 'Remove from favourites!',
             'dont_have_permission' => 'You don\'t have permission to this action',
             'dont_have_permission_message' => 'You are trying to perform an action for which you are not authorized',
+            'dont_have_active_subscription' => 'You don\'n have a premium plan.',
             'not_found' => 'Not found',
             'server_error' => 'Server error'
         ],
@@ -23,16 +32,20 @@ return [
         ],
         'dashboard' => 'dashboard',
         'register' => 'Register',
-        'login' => 'Log in'
+        'login' => 'Log in',
+        'subscription' => 'Subscription',
+        'get_subscription' => 'Got to PREMIUM'
     ],
     'nav' => [
         'dashboard' => 'dashboard',
         'shopping_lists' => 'Shopping lists',
         'create_weekly_list' => 'Create weekly list!',
         'weekly_list' => 'Your weekly list',
+        'recipes' => 'Recipes',
         'change_language' => 'Change language',
         'polish' => 'Polish',
-        'english' => 'English'
+        'english' => 'English',
+        'fav_products' => 'Favourite products'
     ],
     'teams' => [
         'team_member_manager_email' => 'Enter the email address of the person you want to add to this team. You will have equal access to the shopping lists on the team.'
@@ -47,6 +60,7 @@ return [
         'index' => [
             'header' => 'Your shopping lists',
             'title' => 'List name',
+            'get_archived' => 'Archived lists'
         ],
         'create' => [
             'header' => 'Add a shopping list on team:',
@@ -57,10 +71,17 @@ return [
             'header' => 'Edit shopping list',
             'title' => 'List name',
             'shopping_date' => 'Planned date of shopping',
+            'add_positions' => 'Add positions',
+        ],
+        'restore' => [
+            'header' => 'Restore shopping list - Enter a new shopping date',
+            'shopping_date' => 'Shopping date',
         ],
         'show' => [
             'header' => 'Shopping List',
+            'title' => 'Title',
             'shopping_date' => 'Planned date of shopping',
+            'choose_product' => 'Choose product',
             'add_position' => 'Add position',
             'amount' => 'Amount',
             'type' => 'Type',
@@ -75,6 +96,18 @@ return [
             ],
             'show' => [
                 'header' => 'Weekly list',
+                'generate_pdf' => 'Wyświetl PDF'
+            ],
+            'pdf' => [
+                'title' => 'Shopping list on date: ',
+                'position_name' => 'Product name',
+                'amount' => 'Amount',
+            ],
+        ],
+        'archived_lists' => [
+            'index' => [
+                'header' => 'Archived lists',
+                'restore' => 'Restore'
             ],
         ],
     ],
@@ -83,6 +116,11 @@ return [
             'header' => 'Edit position',
             'product' => 'Product name',
         ]
+    ],
+    'products' => [
+        'index' => [
+            'header' => 'Products - add to favourites!'
+        ],
     ],
     'home_page' => [
         'nav' => [
@@ -126,5 +164,51 @@ return [
             'terms' => 'Terms',
             'privacy_policy' => 'Privacy policy',
         ]
+    ],
+    'subscription' => [
+        'checkout' => [
+            'header' => 'Go to PREMIUM!'
+        ]
+    ],
+    'recipes' => [
+        'index' => [
+            'header' => 'Recipes',
+            'name' => 'Name',
+            'recipe_items_count' => 'Amount of items',
+            'status' => 'Status',
+            'actions' => 'Actions',
+            'add' => 'Add new',
+            'my_recipes' => 'My recipes',
+            'team_recipes' => 'My team recipes',
+            'public_recipes' => 'Public recipes',
+        ],
+        'create' => [
+            'header' => 'Add recipe',
+            'name' => 'Name product',
+            'description' => 'Description',
+            'image' => 'Image',
+            'items' => 'Ingredients',
+            'change_image' => 'Change image'
+        ],
+        'edit' => [
+            'header' => 'Edit recipe:',
+            'edit_form' => 'Edit the recipe fields',
+            'add_products' => 'Add product',
+            'preview' => 'Preview',
+            'share_to_public' => 'Share public',
+            'share_to_team' => 'Share in your current team',
+            'unshare_to_public' => 'Shared public',
+            'unshare_to_team' => 'Shared in your current team',
+        ],
+        'show' => [
+            'header' => 'Recipe: ',
+            'list' => 'Ingredients'
+        ]
+    ],
+    'admin_panel' => [
+        'header' => 'Admin dashboard'
+    ],
+    'user_panel' => [
+        'header' => 'User dashboard'
     ]
 ];

@@ -75,7 +75,6 @@ return [
         ],
         'restore' => [
             'header' => 'Przywracasz listę zakupów - wprowadź nową datę zakupów',
-//            'title' => 'Nazwa listy',
             'shopping_date' => 'Data zakupu',
         ],
         'show' => [
@@ -83,12 +82,9 @@ return [
             'title' => 'Nazwa listy',
             'shopping_date' => 'Data zakupu',
             'choose_product' => 'Wybierz produkt',
-            'or_write_name' => 'lub wpisz nazwę',
             'amount' => 'Ilość',
             'type' => 'Typ',
-            'type_placeholder' => 'Wybierz ilość, objętość lub waga',
-            'favourites' => 'Ulubione',
-            'add_fav_in_settings' => 'Dodaj produkty do ulubionych w ustawieniach'
+            'type_placeholder' => 'Wybierz ilość, objętość lub waga'
         ],
         'weekly_list' => [
             'create' => [
@@ -113,7 +109,6 @@ return [
                 'header' => 'Zarchiwizowane listy',
                 'restore' => 'Przywróć'
             ],
-
         ],
     ],
     'positions' => [
@@ -202,10 +197,11 @@ return [
             'preview' => 'Podgląd',
             'share_to_public' => 'Udostępnij publicznie',
             'share_to_team' => 'Udostępnij w zespole',
+            'unshare_to_public' => 'Udostępniono publicznie',
+            'unshare_to_team' => 'Udostępniono w zespole',
         ],
         'show' => [
             'header' => 'Przepis: ',
-            'no_product_on_list' => 'Nie ma twojego produktu na liście? Dodaj go: ',
             'list' => 'Lista składników'
         ]
     ],

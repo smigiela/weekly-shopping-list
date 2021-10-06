@@ -10,6 +10,10 @@ class RecipeController extends Controller
 {
     public function index()
     {
+        if (! auth()->user()->subscribed('premium')){
+            abort(401, __('custom.global.messages.dont_have_active_subscription'));
+        }
+
         $myRecipes = Recipe::withCount('recipeItems')->where('user_id', auth()->id())
             ->paginate(10);
 
@@ -51,6 +55,8 @@ class RecipeController extends Controller
             abort(401, __('custom.global.messages.dont_have_active_subscription'));
         }
 
+        Recipe::check_permission($recipe);
+
         $recipe->load('recipeItems');
 
         return view('recipes.edit', compact('recipe'));
@@ -58,6 +64,8 @@ class RecipeController extends Controller
 
     public function show(Recipe $recipe)
     {
+        Recipe::check_permission($recipe);
+
         $recipe->load('recipeItems');
 
         return view('recipes.show', compact('recipe'));
@@ -68,6 +76,8 @@ class RecipeController extends Controller
         if (! auth()->user()->subscribed('premium')){
             abort(401, __('custom.global.messages.dont_have_active_subscription'));
         }
+
+        Recipe::check_permission($recipe);
 
         Recipe::update($request->all());
 
@@ -80,6 +90,8 @@ class RecipeController extends Controller
 
     public function share_to_team(Recipe $recipe)
     {
+        Recipe::check_permission($recipe);
+
         try {
             if ($recipe->team_id == 0) {
                 $recipe->update(['team_id' => auth()->user()->currentTeam->id]);
@@ -90,12 +102,14 @@ class RecipeController extends Controller
             return back()->with('error', $exception->getMessage());
         }
 
-        return redirect()->route('recipes.index')
+        return back()
             ->with('message', __('custom.global.messages.successfully_save'));
     }
 
     public function share_to_public(Recipe $recipe)
     {
+        Recipe::check_permission($recipe);
+
         try {
             if ($recipe->is_public == 0) {
                 $recipe->update(['is_public' => true]);
@@ -106,7 +120,7 @@ class RecipeController extends Controller
             return back()->with('error', $exception->getMessage());
         }
 
-        return redirect()->route('recipes.index')
+        return back()
             ->with('message', __('custom.global.messages.successfully_save'));
     }
 }

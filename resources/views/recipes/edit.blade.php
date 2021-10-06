@@ -4,27 +4,37 @@
             <div class="flex">
                 <div class="flex-shrink-0 flex items-center">
                     <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                        {{ __('custom.recipes.edit.header') . $recipe->name }}
+                        {{ __('custom.recipes.edit.header') . ' ' . $recipe->name }}
                     </h2>
                 </div>
                 <div class="ml-6">
-                    <a href="{{route('recipe.shareToPublic', $recipe)}}"
-                       class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                        {{__('custom.recipes.edit.share_to_public')}}
-                    </a>
+                    @if($recipe->is_public == false)
+                        <a href="{{route('recipe.shareToPublic', $recipe)}}"
+                           class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                            {{__('custom.recipes.edit.share_to_public')}}
+                        </a>
+                    @else
+                        <a href="{{route('recipe.shareToPublic', $recipe)}}"
+                           class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-400 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                            {{__('custom.recipes.edit.unshare_to_public')}}
+                        </a>
+                    @endif
                 </div>
                 <div class="ml-6">
-                    <a href="{{route('recipe.shareToTeam', $recipe)}}"
-                       class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                        {{__('custom.recipes.edit.share_to_team')}}
-                    </a>
+                    @if($recipe->team_id == null)
+                        <a href="{{route('recipe.shareToTeam', $recipe)}}"
+                           class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                            {{__('custom.recipes.edit.share_to_team')}}
+                        </a>
+                    @else
+                        <a href="{{route('recipe.shareToTeam', $recipe)}}"
+                           class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-400 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                            {{__('custom.recipes.edit.unshare_to_team')}}
+                        </a>
+                    @endif
                 </div>
             </div>
         </div>
-
-
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-        </h2>
     </x-slot>
 
     <div class="mt-6 max-w-7xl mx-auto sm:px-6 lg:px-8">

@@ -23,6 +23,13 @@ class Recipe extends Model implements HasMedia
             ->singleFile();
     }
 
+    public static function check_permission($recipe)
+    {
+        if ( $recipe->user_id != auth()->id()){
+            abort(401, __('custom.global.messages.dont_have_permission_message'));
+        }
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);
