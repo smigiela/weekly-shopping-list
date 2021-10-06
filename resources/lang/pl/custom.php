@@ -34,6 +34,7 @@ return [
         'register' => 'Zarejestruj się',
         'login' => 'Zaloguj się',
         'subscription' => 'Subskrypcja',
+        'get_subscription' => 'Przejdź na PREMIUM'
     ],
     'nav' => [
         'dashboard' => 'Panel użytkownika',
@@ -177,6 +178,14 @@ return [
     'recipes' => [
         'index' => [
             'header' => 'Przepisy',
+            'name' => 'Nazwa',
+            'recipe_items_count' => 'Składniki',
+            'status' => 'Status',
+            'actions' => 'Akcje',
+            'add' => 'Dodaj nowy',
+            'my_recipes' => 'Moje przepisy',
+            'team_recipes' => 'Zespołowe przepisy',
+            'public_recipes' => 'Publiczne przepisy',
         ],
         'create' => [
             'header' => 'Utwórz przepis',
@@ -186,10 +195,24 @@ return [
             'items' => 'Składniki',
             'change_image' => 'Zmień zdjęcie'
         ],
+        'edit' => [
+            'header' => 'Edytuj przepis:',
+            'edit_form' => 'Edytuj pola przepisu',
+            'add_products' => 'Dodaj pozycje',
+            'preview' => 'Podgląd',
+            'share_to_public' => 'Udostępnij publicznie',
+            'share_to_team' => 'Udostępnij w zespole',
+        ],
         'show' => [
             'header' => 'Przepis: ',
             'no_product_on_list' => 'Nie ma twojego produktu na liście? Dodaj go: ',
             'list' => 'Lista składników'
         ]
+    ],
+    'admin_panel' => [
+        'header' => 'Panel administracyjny'
+    ],
+    'user_panel' => [
+        'header' => 'Panel użytkownika'
     ]
 ];

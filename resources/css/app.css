@@ -6,3 +6,6 @@
     text-decoration: line-through;
     color: green;
 }
+.ck-editor__editable {
+    min-height: 500px;
+}

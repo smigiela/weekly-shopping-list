@@ -10,7 +10,7 @@
             <div class="sm:px-6 lg:px-8">
                 <div class="flex gap-4 overflow-hidden sm:rounded-lg">
                     <div class="sm:w-3/4 md:w-3/4 lg:w-3/4 2xl:w-3/4 w-full bg-white">
-                        <form action="{{route('recipes.store')}}" method="POST">
+                        <form action="{{route('recipes.store')}}" method="POST" enctype="multipart/form-data">
                             @method('POST')
                             @csrf
                             <div class="shadow sm:rounded-md sm:overflow-hidden">
@@ -25,7 +25,7 @@
                                                        block w-full rounded-none rounded-r-md sm:text-sm border-gray-300 mb-6">
                                             </x-jet-input>
                                             <x-jet-label for="description">{{__('custom.recipes.create.description')}}</x-jet-label>
-                                            <textarea name="description" id="description" rows="5"
+                                            <textarea name="description" id="ckeditor" rows="5"
                                                       class="focus:ring-indigo-500 focus:border-indigo-500 flex-1
                                                        block w-full rounded-none rounded-r-md sm:text-sm border-gray-300">
                                                 {{old('description')}}
@@ -68,28 +68,8 @@
     </div>
     </div>
     @section('scripts')
-        <script>
-            function imageData() {
-                return {
-                    previewUrl: "",
-                    updatePreview() {
-                        var reader,
-                            files = document.getElementById("image").files;
-
-                        reader = new FileReader();
-
-                        reader.onload = e => {
-                            this.previewUrl = e.target.result;
-                        };
-
-                        reader.readAsDataURL(files[0]);
-                    },
-                    clearPreview() {
-                        document.getElementById("image").value = null;
-                        this.previewUrl = "";
-                    }
-                };
-            }
-        </script>
+        @include('partials.imageUpload')
+        @include('recipes.ckeditor')
+        @include('partials.select2')
     @endsection
 </x-app-layout>

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Recipes\Recipe;
 use App\Models\Shopping_lists\ShoppingList;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Laravel\Jetstream\Events\TeamCreated;
@@ -46,5 +47,10 @@ class Team extends JetstreamTeam
     public function shoppingLists()
     {
         return $this->hasMany(ShoppingList::class);
+    }
+
+    public function recipes()
+    {
+        return $this->hasMany(Recipe::class);
     }
 }

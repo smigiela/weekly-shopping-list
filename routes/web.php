@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\PaymentProcessorController;
 use App\Http\Controllers\FavouriteController;
 use App\Http\Controllers\LocalizationController;
 use App\Http\Controllers\ProductController;
@@ -14,7 +16,11 @@ use Illuminate\Support\Facades\Route;
 // home page
 Route::get('/', fn() => view('welcome'))->name('welcome');
 
-Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
+Route::get('balance',[PaymentProcessorController::class, 'getBalance'])->name('admin.getBalance');
+
+    // admin views
+    Route::get('/admin/dashboard',[DashboardController::class, 'index']);
+    Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
 
     // products
     Route::get('/ajax-autocomplete-search', [ProductController::class, 'selectSearch']);
@@ -62,12 +68,17 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
         ->name('products.removeFromFav');
 
     // recipes
-    Route::view('recipes', 'recipes.index')->name('recipes.index');
+    Route::get('share_to_team/recipes/{recipe}', [RecipeController::class, 'share_to_team'])
+        ->name('recipe.shareToTeam');
+    Route::get('share_to_public/recipes/share_to_public/{recipe}', [RecipeController::class, 'share_to_public'])
+        ->name('recipe.shareToPublic');
     Route::resource('recipes', RecipeController::class);
 
     Route::post('recipe_items/{recipe}', [RecipeItemController::class, 'store'])->name('recipe_items.store');
     Route::resource('recipes_items', RecipeItemController::class, ['except' => 'store']);
-});
+
+
+    });
 
 Route::get('lang/{locale}', [LocalizationController::class, 'index'])->name('settings.changeLocale');
 
