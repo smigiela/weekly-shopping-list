@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Recipes;
 
 use App\Http\Controllers\Controller;
+use App\Models\ProductCategory;
 use App\Models\Recipes\Recipe;
 use Illuminate\Http\Request;
 
@@ -59,7 +60,9 @@ class RecipeController extends Controller
 
         $recipe->load('recipeItems');
 
-        return view('recipes.edit', compact('recipe'));
+        $categories = ProductCategory::all();
+
+        return view('recipes.edit', compact('recipe', 'categories'));
     }
 
     public function show(Recipe $recipe)

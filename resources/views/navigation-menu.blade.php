@@ -26,7 +26,7 @@
 
                 {{--                @if(auth()->user()->subscribed('premium'))--}}
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{ route('recipes.index') }}" :active="request()->routeIs('recipes.index')">
+                    <x-jet-nav-link href="{{ route('recipes.index') }}" :active="request()->routeIs('recipes.*')">
                         {{ __('custom.nav.recipes') }}
                     </x-jet-nav-link>
                 </div>

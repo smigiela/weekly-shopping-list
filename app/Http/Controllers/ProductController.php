@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProductStoreRequest;
 use App\Models\Product;
+use App\Models\ProductCategory;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
@@ -11,7 +13,7 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
     public function index()
     {
@@ -23,22 +25,27 @@ class ProductController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
     public function create()
     {
-        //
+        $categories = ProductCategory::where('id', '<', 11)->get();
+
+        return view('products.create', compact('categories'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param ProductStoreRequest $request
+     * @return RedirectResponse
      */
-    public function store(Request $request)
+    public function store(ProductStoreRequest $request)
     {
-        //
+        Product::create($request->all());
+
+        return redirect()->route('shopping_lists.index')
+            ->with('message', __('custom.global.messages.successfully_save'));
     }
 
     /**

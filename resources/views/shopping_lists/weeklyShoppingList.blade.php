@@ -31,7 +31,7 @@
                                                     </div>
                                                 </a>
                                             @else
-                                                <a href="{{route('weekly_lists.unmarkAsDoneWeklyPositions', $position)}}"
+                                                <a href="{{route('weekly_lists.unmarkAsDoneWeeklyPositions', $position)}}"
                                                    class="inline-block">
                                                     <div class="text-green-600">
                                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6"

@@ -21,16 +21,16 @@
     <div class="py-12 grid grid-cols-1 2xl:grid-cols-5 2xl:gap-8">
 
     <div class="col-span-1">
-        <div class="relative h-50 p-4 bg-green-50 rounded-xl shadow-xl">
+        <div class="relative h-full p-4 bg-green-50 rounded-xl shadow-xl">
             <h1 class="text-2xl font-bold text-gray-700">{{ __('custom.shopping_lists.weekly_list.show.header') }}</h1>
             @if(! $weeklyShoppingList)
                 <p>{{__('custom.global.nothing_to_show')}}</p>
             @else
-                <div class="mt-4 h-96">
+                <div class="mt-4 h-3/4">
                 <p class="text-sm mt-2 text-gray-700">
                     {{__('custom.shopping_lists.global.shopping_date')}}
                     : {{ $weeklyShoppingList->shopping_date ?? '' }}</p>
-                <div class="overflow-y-auto h-3/5 mt-3 mb-6 space-x-4 p-1">
+                <div class="overflow-y-auto h-full mt-3 mb-6 space-x-4 p-1">
                     <ul>
                             @forelse($weeklyPositions->sortBy('is_done') as $position)
                                 <li class="{{ ($position->is_done) ? 'position_is_done' : '' }}">
@@ -53,7 +53,7 @@
                                             </div>
                                         @endif
                                         {{$position->name}} |
-                                        {{$position->amount}}
+                                        {{$position->sum}}
                                         @if($position->type == 'weight'){{__('custom.shopping_lists.global.g')}}
                                         @elseif($position->type == 'quantity'){{__('custom.shopping_lists.global.qty')}}
                                         @elseif($position->type == 'volume'){{__('custom.shopping_lists.global.ml')}}
@@ -67,20 +67,17 @@
                     </ul>
                 </div>
                 <div class="absolute gap-1 bottom-0 mx-auto mt-4 mb-2 flex justify-between pl-2 pr-1">
-                    <a href="{{route('shopping_lists.edit', $weeklyShoppingList ?? '')}}" class="text-xs md:text-md  block font-semibold py-2 px-6
-                        text-white hover:text-green-100 bg-blue-400 rounded-lg
-                        shadow hover:shadow-md transition duration-300">{{__('custom.global.edit')}}</a>
-                    <a href="{{route('shopping_lists.show', $weeklyShoppingList ?? '')}}" class="text-xs md:text-md block font-semibold py-2 px-6
+                    <a href="{{route('weekly_lists.index')}}" class="text-xs md:text-md block font-semibold py-2 px-6
                         text-white hover:text-green-100 bg-green-400 rounded-lg
                         shadow hover:shadow-md transition duration-300">{{__('custom.global.choose')}}</a>
 
-                    <form action="{{route('shopping_lists.destroy', $weeklyShoppingList ?? '')}}"
+                    <form action="{{route('weekly_lists.destroy', $weeklyShoppingList ?? '')}}"
                           method="post">
                         @CSRF
                         @method('DELETE')
                         <button type="submit" class="text-xs md:text-md block font-semibold py-2 px-6
                     text-white hover:text-green-100 bg-red-400 rounded-lg
-                    shadow hover:shadow-md transition duration-300">{{__('custom.global.archive')}}</button>
+                    shadow hover:shadow-md transition duration-300">{{__('custom.global.delete')}}</button>
                     </form>
                 </div>
             </div>

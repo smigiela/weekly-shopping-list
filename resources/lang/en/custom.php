@@ -8,6 +8,7 @@ return [
         'choose' => 'Choose',
         'save' => 'Save',
         'archive' => 'Archive',
+        'delete' => 'Delete',
         'permanently_delete' => 'Permanently delete!',
         'there' => 'THERE',
         'messages' => [
@@ -121,6 +122,11 @@ return [
         'index' => [
             'header' => 'Products - add to favourites!'
         ],
+        'create' => [
+            'header' => 'Create product',
+            'name' => 'Product name',
+            'category' => 'Category name',
+        ],
     ],
     'home_page' => [
         'nav' => [
@@ -199,6 +205,9 @@ return [
             'share_to_team' => 'Share in your current team',
             'unshare_to_public' => 'Shared public',
             'unshare_to_team' => 'Shared in your current team',
+            'no_product_on_list' => 'If you dont see your product, you can add: ',
+            'items' => 'Ingredients',
+            'add_ingredient' => 'Add new ingredients',
         ],
         'show' => [
             'header' => 'Recipe: ',

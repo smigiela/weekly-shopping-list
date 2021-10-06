@@ -8,6 +8,7 @@ return [
         'choose' => 'Wybierz',
         'save' => 'Zapisz',
         'archive' => 'Archiwizuj',
+        'delete' => 'Usuń',
         'permanently_delete' => 'Usuń na zawsze!',
         'there' => 'TUTAJ',
         'messages' => [
@@ -121,6 +122,11 @@ return [
         'index' => [
           'header' => 'Produkty - dodaj do ulubionych!'
         ],
+        'create' => [
+            'header' => 'Utwórz produkt',
+            'name' => 'Nazwa produktu',
+            'category' => 'Kategoria produktu',
+        ],
     ],
     'home_page' => [
         'nav' => [
@@ -193,12 +199,15 @@ return [
         'edit' => [
             'header' => 'Edytuj przepis:',
             'edit_form' => 'Edytuj pola przepisu',
-            'add_products' => 'Dodaj pozycje',
+            'add_products' => 'Dodaj składniki',
             'preview' => 'Podgląd',
             'share_to_public' => 'Udostępnij publicznie',
             'share_to_team' => 'Udostępnij w zespole',
             'unshare_to_public' => 'Udostępniono publicznie',
             'unshare_to_team' => 'Udostępniono w zespole',
+            'no_product_on_list' => 'Nie ma Twojego produktu? Dodaj go: ',
+            'items' => 'Składniki',
+            'add_ingredient' => 'Dodaj składnik, jeśli nie ma go na liście',
         ],
         'show' => [
             'header' => 'Przepis: ',

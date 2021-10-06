@@ -14,11 +14,17 @@ class ShowLists extends Component
 
     public function render()
     {
+        $shoppingLists = ShoppingList::with('positions')
+            ->where('team_id', auth()->user()->currentTeam->id)
+            ->orderBy('shopping_date')
+            ->paginate(3);
+
+        $shoppingLists->load(['positions' => function($query) {
+            $query->orderBy('product_category_id');
+        }]);
+
         return view('livewire.show-lists', [
-            'shoppingLists' => ShoppingList::with('positions')
-                ->where('team_id', auth()->user()->currentTeam->id)
-                ->orderBy('shopping_date')
-                ->paginate(3)
+            'shoppingLists' => $shoppingLists
         ]);
     }
 }

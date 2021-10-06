@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PaymentProcessorController;
+use App\Http\Controllers\BillingPortalController;
 use App\Http\Controllers\FavouriteController;
 use App\Http\Controllers\LocalizationController;
 use App\Http\Controllers\ProductController;
@@ -23,7 +24,9 @@ Route::get('balance',[PaymentProcessorController::class, 'getBalance'])->name('a
     Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
 
     // products
-    Route::get('/ajax-autocomplete-search', [ProductController::class, 'selectSearch']);
+    Route::get('/ajax-autocomplete-search', [ProductController::class, 'selectSearch'])->name('autocomplete');
+    Route::get('products/create', [ProductController::class, 'create'])->name('products.create');
+    Route::post('products', [ProductController::class, 'store'])->name('products.store');
 
     // shopping lists
     Route::get('shopping_lists/archived/{shopping_list}', [ShoppingListController::class, 'editArchivedLists'])
@@ -41,18 +44,15 @@ Route::get('balance',[PaymentProcessorController::class, 'getBalance'])->name('a
     Route::resource('shopping_lists', ShoppingListController::class);
 
     // weekly list
-    Route::get('weekly_shopping_lists', [WeeklyShoppingListController::class, 'index'])
-        ->name('weekly_lists.index');
-    Route::get('weekly_shopping_lists/create', [WeeklyShoppingListController::class, 'create'])
-        ->name('weekly_lists.create');
-    Route::post('weekly_shopping_lists', [WeeklyShoppingListController::class, 'store'])
-        ->name('weekly_lists.store');
-    Route::get('weekly_shopping_lists/{weeklyShoppingList}/downloadpdf', [WeeklyShoppingListController::class, 'downloadPdf'])
+    Route::get('weekly_lists', [WeeklyShoppingListController::class, 'show'])->name('weekly_lists.show');
+    Route::get('downloadpdf/weekly_lists/{weeklyShoppingList}/', [WeeklyShoppingListController::class, 'downloadPdf'])
         ->name('weekly_lists.downloadpdf');
-    Route::get('weekly_shopping_lists/complete/{position}', [WeeklyShoppingListController::class, 'mark_as_done_weekly_positions'])
+    Route::get('weekly_lists/complete/{position}', [WeeklyShoppingListController::class, 'mark_as_done_weekly_positions'])
         ->name('weekly_lists.markAsDoneWeeklyPositions');
-    Route::get('weekly_shopping_lists/unmark_as_done/{position}', [WeeklyShoppingListController::class, 'unmark_as_done_weekly_positions'])
-        ->name('weekly_lists.unmarkAsDoneWeklyPositions');
+    Route::get('weekly_lists/unmark_as_done/{position}', [WeeklyShoppingListController::class, 'unmark_as_done_weekly_positions'])
+        ->name('weekly_lists.unmarkAsDoneWeeklyPositions');
+    Route::resource('weekly_lists', WeeklyShoppingListController::class)->except('show');
+
 
     // positions
     Route::get('positions/restore/{position_id}', [PositionController::class, 'restore'])
@@ -85,6 +85,7 @@ Route::get('lang/{locale}', [LocalizationController::class, 'index'])->name('set
 Route::get('/subscription', [SubscriptionController::class, 'show'])->name('subscription.show');
 Route::post('/subscription/purchase', [SubscriptionController::class, 'purchase'])->name('subscription.purchase');
 
+Route::get('/billing-portal', BillingPortalController::class);
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');

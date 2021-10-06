@@ -99,6 +99,11 @@
                                 </div>
                             </div>
                         </div>
+
+                        <p>{{__('custom.recipes.edit.no_product_on_list')}}
+                            <a href="{{route('products.create')}}">{{__('custom.global.there')}}</a>
+                        </p>
+
                         <x-jet-validation-errors></x-jet-validation-errors>
 
                         <div class="px-4 py-3 text-right sm:px-6">
@@ -124,25 +129,8 @@
                         <div class="mt-3 space-x-4 p-1">
                             <ul>
                                 @forelse($shoppingList->positions->sortBy('is_done') as $position)
-                                    <li class="{{ ($position->is_done) ? 'position_is_done' : '' }}">
+                                    <li>
                                         <div class="inline-flex">
-                                            @if(!$position->is_done)
-                                                <div class="text-red-500">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6"
-                                                         fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                                              stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-                                                    </svg>
-                                                </div>
-                                            @else
-                                                <div class="text-green-600">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6"
-                                                         fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                                              stroke-width="2" d="M5 13l4 4L19 7"/>
-                                                    </svg>
-                                                </div>
-                                            @endif
                                             {{$position->name}} |
                                             {{$position->amount}}
                                             @if($position->type == 'weight'){{__('custom.shopping_lists.global.g')}}

@@ -59,6 +59,17 @@ class WeeklyShoppingListController extends Controller
 
     /**
      * @param WeeklyShoppingList $weeklyShoppingList
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function destroy(WeeklyShoppingList $weeklyShoppingList)
+    {
+        $this->service->getWeeklyList()->delete();
+
+        return redirect()->route('shopping_lists.index');
+    }
+
+    /**
+     * @param WeeklyShoppingList $weeklyShoppingList
      * @return mixed
      */
     public function downloadPdf(WeeklyShoppingList $weeklyShoppingList)
