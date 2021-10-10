@@ -11,12 +11,19 @@
                 </div>
 
                 <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                        {{ __('custom.nav.dashboard') }}
-                    </x-jet-nav-link>
-                </div>
-
+                @if(auth()->user()->is_admin == false)
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-jet-nav-link href="{{ route('home') }}" :active="request()->routeIs('home')">
+                            {{ __('custom.nav.user_dashboard') }}
+                        </x-jet-nav-link>
+                    </div>
+                @else
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-jet-nav-link href="{{ route('admin.home') }}" :active="request()->routeIs('admin.home')">
+                            {{ __('custom.nav.admin_dashboard') }}
+                        </x-jet-nav-link>
+                    </div>
+                @endif
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="{{ route('shopping_lists.index') }}"
                                     :active="request()->routeIs('shopping_lists.index')">
@@ -142,9 +149,16 @@
                                 {{ __('Profile') }}
                             </x-jet-dropdown-link>
 
-                            <x-jet-dropdown-link href="{{route('subscription.show')}}">
-                                {{ __('custom.global.subscription') }}
-                            </x-jet-dropdown-link>
+                            @if(auth()->user()->subscribed('premium'))
+                                <x-jet-dropdown-link href="{{route('billingportal')}}">
+                                    {{ __('custom.global.subscription') }}
+                                </x-jet-dropdown-link>
+                            @else
+                                <x-jet-dropdown-link href="{{route('subscription.show')}}">
+                                    {{ __('custom.global.get_subscription') }}
+                                </x-jet-dropdown-link>
+                            @endif
+
 
                             <x-jet-dropdown-link href="{{route('products.index')}}">
                                 {{ __('custom.nav.fav_products') }}
@@ -202,6 +216,15 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden fadeIn">
         <div class="pt-2 pb-3 space-y-1">
+            @if(auth()->user()->is_admin == false)
+                <x-jet-responsive-nav-link href="{{ route('home') }}" :active="request()->routeIs('home')">
+                    {{ __('custom.nav.user_dashboard') }}
+                </x-jet-responsive-nav-link>
+            @else
+                <x-jet-responsive-nav-link href="{{ route('admin.home') }}" :active="request()->routeIs('admin.home')">
+                    {{ __('custom.nav.admin_dashboard') }}
+                </x-jet-responsive-nav-link>
+            @endif
             <x-jet-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                 {{ __('custom.nav.dashboard') }}
             </x-jet-responsive-nav-link>

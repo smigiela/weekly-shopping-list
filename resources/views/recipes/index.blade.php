@@ -329,7 +329,7 @@
     @endif
     @section('scripts')
         @include('partials.imageUpload')
-        @include('recipes.ckeditor')
+        @include('partials.ckeditor')
         @include('partials.select2')
     @endsection
 </x-app-layout>

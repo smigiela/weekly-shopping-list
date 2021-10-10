@@ -60,8 +60,17 @@ return [
     | and the user is authenticated. You are free to change this value.
     |
     */
+    'home' => function(){
+//        return route('dashboard');
 
-    'home' => RouteServiceProvider::HOME,
+        if (Auth::user()->is_admin == true) {
+            return route('admin.home');
+        }
+        else{
+            return route('home');
+        }
+    },
+//    'home' => RouteServiceProvider::HOME,
 
     /*
     |--------------------------------------------------------------------------

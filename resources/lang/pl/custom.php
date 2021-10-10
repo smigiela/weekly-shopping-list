@@ -34,11 +34,13 @@ return [
         'dashboard' => 'Panel użytkownika',
         'register' => 'Zarejestruj się',
         'login' => 'Zaloguj się',
-        'subscription' => 'Subskrypcja',
+        'subscription' => 'Twoja subskrypcja',
         'get_subscription' => 'Przejdź na PREMIUM'
     ],
     'nav' => [
         'dashboard' => 'Panel użytkownika',
+        'user_dashboard' => 'Panel użytkownika',
+        'admin_dashboard' => 'Panel administratora',
         'shopping_lists' => 'Moje listy zakupów',
         'create_weekly_list' => 'Na zakupy!',
         'weekly_list' => 'Lista tygodniowa',
@@ -215,9 +217,30 @@ return [
         ]
     ],
     'admin_panel' => [
-        'header' => 'Panel administracyjny'
+        'header' => 'Panel administracyjny',
+        'premium_users' => 'Subskrybenci',
+        'free_users' => 'Konta free',
+        'name' => 'Nazwa klienta',
+        'email' => 'Email',
+        'status' => 'Status',
+        'enabled' => 'Włączony',
+        'disabled' => 'Wyłączony',
+        'amount_referrals' => 'Liczba poleconych',
+        'manual_disabled' => 'Manualne wyłączenie',
+        'turn_on' => 'Włącz',
+        'turn_off' => 'Wyłącz',
     ],
     'user_panel' => [
-        'header' => 'Panel użytkownika'
+        'header' => 'Panel użytkownika',
+        'next_subscription' => 'Termin zapłaty za kolejny okres subskrypcji: ',
+        'affiliate_saldo' => 'Saldo programu partnerskiego',
+        'messages' => 'Wiadomości',
+        'referral_link' => 'Twój link referencyjny: ',
+        'username' => 'Nazwa użytkownika: ',
+        'status' => 'Status konta: ',
+        'earned' => 'Do tej pory zarobiłeś z nami: ',
+        'amount_affiliates' => 'Twoi aktywni poleceni: ',
+        'enabled' => 'Włączone',
+        'disabled' => 'Wyłączone',
     ]
 ];

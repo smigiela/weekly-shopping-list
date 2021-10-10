@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class SubscriptionController extends Controller
@@ -19,7 +20,10 @@ class SubscriptionController extends Controller
 
     public function purchase(Request $request, int $price = 1500)
     {
-        $request->user()->newSubscription('premium', 'price_1JUn2bBwypJl1scHk9GteAlS')->create($request->token);
+        $subscription = $request->user()->newSubscription('premium', config('services.stripe.premium_price'))->skipTrial()->create($request->token);
+
+        $subscription->update(['ends_at' => Carbon::now()->addMonth(1)]);
+        auth()->user()->update(['trial_ends_at' => now()]);
 
         return redirect()->route('subscription.show')->with('message', __('custom.global.messages.successfully_purchase'));    }
 }

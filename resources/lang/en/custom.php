@@ -34,11 +34,13 @@ return [
         'dashboard' => 'dashboard',
         'register' => 'Register',
         'login' => 'Log in',
-        'subscription' => 'Subscription',
-        'get_subscription' => 'Got to PREMIUM'
+        'subscription' => 'Your subscription',
+        'get_subscription' => 'Go to PREMIUM'
     ],
     'nav' => [
         'dashboard' => 'dashboard',
+        'user_dashboard' => 'User dashboard',
+        'admin_dashboard' => 'Admin dashboard',
         'shopping_lists' => 'Shopping lists',
         'create_weekly_list' => 'Create weekly list!',
         'weekly_list' => 'Your weekly list',
@@ -215,9 +217,26 @@ return [
         ]
     ],
     'admin_panel' => [
-        'header' => 'Admin dashboard'
+        'header' => 'Admin dashboard',
+        'premium_users' => 'Subscribers',
+        'free_users' => 'Free accounts',
+        'name' => 'Client name',
+        'email' => 'Email',
+        'status' => 'Status',
+        'amount_referrals' => 'Amount of referrals',
+        'manual_disabled' => 'Manual disable',
+        'turn_on' => 'Enable',
+        'turn_off' => 'Disable',
     ],
     'user_panel' => [
-        'header' => 'User dashboard'
+        'header' => 'User dashboard',
+        'next_subscription' => 'Next payments for subscription: ',
+        'affiliate_saldo' => 'Affiliate program balance',
+        'messages' => 'Messages',
+        'referral_link' => 'Your referral link: ',
+        'username' => 'Username: ',
+        'status' => 'Account status: ',
+        'earned' => 'So far you have earned with us: ',
+        'amount_affiliates' => 'Your active referrals: ',
     ]
 ];

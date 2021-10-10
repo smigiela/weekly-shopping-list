@@ -28,6 +28,5 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         ShoppingList::observe(ShoppingListObserver::class);
-        Position::observe(PositionObserver::class);
     }
 }
