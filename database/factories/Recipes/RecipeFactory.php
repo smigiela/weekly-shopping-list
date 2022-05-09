@@ -25,6 +25,7 @@ class RecipeFactory extends Factory
             'name' => 'Przepis na ...',
             'description' => 'testowy opis przepisu.',
             'team_id' => rand(1,5),
+            'user_id' => rand(1,10),
             'is_public' => rand(0,1)
         ];
     }
