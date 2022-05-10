@@ -9,7 +9,7 @@
         <div class="col-span-1 bg-white px-8 py-6">
             <p class="text-xl font-semibold">{{__('custom.user_panel.next_subscription')}}:</p>
 
-            {{ $next_payment }}
+            {{ $next_payment ?? ''}}
         </div>
         <div class="col-span-1 bg-white px-8 py-6">
             <p class="text-xl font-semibold">{{__('custom.user_panel.affiliate_saldo')}}</p>
