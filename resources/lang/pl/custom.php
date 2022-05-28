@@ -233,6 +233,7 @@ return [
     'user_panel' => [
         'header' => 'Panel użytkownika',
         'next_subscription' => 'Termin zapłaty za kolejny okres subskrypcji: ',
+        'next_payment_without_subscription' => 'Nie masz aktywnej subskrypcji',
         'affiliate_saldo' => 'Saldo programu partnerskiego',
         'messages' => 'Wiadomości',
         'referral_link' => 'Twój link referencyjny: ',

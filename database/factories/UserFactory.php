@@ -19,7 +19,7 @@ class UserFactory extends Factory
 
     /**
      * Define the model's default state.
-     *
+     * TODO: dodać curent_team_id ABY APLIKACJA DZIAŁAŁA
      * @return array
      */
     public function definition()

@@ -29,6 +29,7 @@ class ShoppingListController extends Controller
     public function index(): View
     {
         $weeklyShoppingList = $this->service->getWeeklyList();
+        $shoppingLists = auth()->user()->currentTeam->shoppingLists;
 
         if (! $weeklyShoppingList){
            $weeklyPositions = [];
@@ -37,7 +38,7 @@ class ShoppingListController extends Controller
         }
 
 
-        return view('shopping_lists.index', compact('weeklyPositions', 'weeklyShoppingList'));
+        return view('shopping_lists.index', compact('weeklyPositions', 'weeklyShoppingList', 'shoppingLists'));
     }
 
     /**

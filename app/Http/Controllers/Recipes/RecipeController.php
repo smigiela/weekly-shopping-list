@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Recipes;
 use App\Http\Controllers\Controller;
 use App\Models\ProductCategory;
 use App\Models\Recipes\Recipe;
+use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class RecipeController extends Controller
 {
@@ -28,9 +30,9 @@ class RecipeController extends Controller
     }
 
     /**
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @return View
      */
-    public function create()
+    public function create(): View
     {
         return view('recipes.create');
     }
