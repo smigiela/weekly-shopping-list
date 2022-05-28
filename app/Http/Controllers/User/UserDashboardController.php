@@ -17,11 +17,16 @@ class UserDashboardController extends Controller
     }
 
     /**
+     * TODO: wynieść przekierowanie admina gdzie indziej
      * @return View
      */
-    public function index(): View
+    public function index()
     {
         $user = auth()->user();
+
+        if($user->is_admin == true)
+            return redirect()->route('admin.home');
+
         $user->load('subscriptions');
 
         if ($user->subscriptions->first() == null)
