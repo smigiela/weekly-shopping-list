@@ -231,6 +231,7 @@ return [
     'user_panel' => [
         'header' => 'User dashboard',
         'next_subscription' => 'Next payments for subscription: ',
+        'next_payment_without_subscription' => 'You do not have an active subscription',
         'affiliate_saldo' => 'Affiliate program balance',
         'messages' => 'Messages',
         'referral_link' => 'Your referral link: ',
