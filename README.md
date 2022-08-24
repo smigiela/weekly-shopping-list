@@ -1,7 +1,5 @@
 # Aplikacja do zarządzania listami zakupów
 
-## Prawa autorskie należą do: TOMASZ ŁUKASIK. Kopiowanie, używanie bez zgody właściciela surowo zabronione.
-
 ### Wymogi aplikacji zgodnie z umową:
 
 1. możliwość tworzenia przez uiytkowników listy zakupdw {etap 1. projektu},
